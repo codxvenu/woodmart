@@ -1,0 +1,94 @@
+import React from 'react'
+import { urbanist } from '@/pages/_app';
+
+const categories = () => {
+    const data = [
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-tables.jpg",
+          "pname": "Tables",
+          "pquantity": "10"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-sofas.jpg",
+          "pname": "Sofas",
+          "pquantity": "10"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-chairs.jpg",
+          "pname": "Chairs",
+          "pquantity": "10"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-armchairs.jpg",
+          "pname": "Armchairs",
+          "pquantity": "10"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-category-storage.jpg",
+          "pname": "Accessories",
+          "pquantity": "2"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-toys-opt.jpg",
+          "pname": "Toys",
+          "pquantity": "0"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-textiles-opt.jpg",
+          "pname": "Textiles",
+          "pquantity": "0"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-lighting-opt.jpg",
+          "pname": "Lighting",
+          "pquantity": "0"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-decor-opt.jpg",
+          "pname": "Decor",
+          "pquantity": "0"
+        },
+        {
+          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-beds-opt.jpg",
+          "pname": "Beds",
+          "pquantity": "0"
+        }
+      ];
+      
+  return (
+    <div className={`max-w-full h-[100%] p-[40px_5px] lg:p-[70px_72px] relative z-10  ${urbanist.className}`}>
+    <span >
+
+  <h1 className='text-[22px]  lg:text-[32px] font-bold'>Our categories</h1>
+    <small className='text-[#767676] text-[14px] lg:text-[16px]'>Lots of new products and product collections</small>
+   
+    </span>
+   <div className="categories grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center  lg:grid-cols-5 mt-[40px] sm:gap-[10px] lg:gap-[20px] max-[576px]:gap-4">
+   {data.map((product, index) => (
+  <span
+    key={index}
+    className="z-1 h-[100%] w-[100%] sm:bg-black aspect-square flex flex-col justify-center items-center rounded-full gap-4 group relative overflow-hidden bg-cover bg-center transition-transform duration-500"
+    style={{ backgroundImage: `url(${product.img})` }}
+  >
+    <div className='w-full h-full absolute bg-black/50 transition-opacity duration-300 lg:opacity-0 z-[1] group-hover:opacity-[.5]'></div>
+    {/* Zoom-out background effect */}
+    <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-90 z-0" style={{ backgroundImage: `url(${product.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+
+    {/* Foreground content */}
+    <div className="relative z-10 flex flex-col items-center gap-3 max-[640px]:gap-[4px]">
+      <h1 className="px-[18px] py-[4px] font-semibold text-[18px] lg:text-[20px] bg-white rounded-[24px] translate-y-[50%] max-[640px]:translate-y-0 group-hover:translate-y-0 transition-all duration-300 ease-in">
+        {product.pname}
+      </h1>
+      <h2 className="text-[15px]  sm:opacity-[100] text-white lg:opacity-0 group-hover:opacity-100 font-[500] transition-opacity duration-300">
+        {product.pquantity} products
+      </h2>
+    </div>
+  </span>
+))}
+
+   </div>
+ </div>
+  )
+}
+
+export default categories
