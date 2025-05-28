@@ -3,7 +3,7 @@ import { urbanist, workSans } from "@/pages/_app";
 
 const product_collection = () => {
   return (
-    <div className={`${urbanist.className} lg:p-[30px_72px] p-[30px_5px]`}>
+    <div className={`${urbanist.className} lg:p-[30px_10px] p-[30px_5px]`}>
       <span className="flex flex-col gap-3 items-center mb-10">
         <h1 className="text-[22px]  lg:text-[32px] font-bold">
           Product collections
@@ -18,13 +18,13 @@ const product_collection = () => {
         <div className="child flex flex-col gap-4">
           <span>
             <img
-              src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-hotspot-1-opt.jpg"
+              src="./10029.jpg"
               alt=""
             />
           </span>
           <span>
             <img
-              src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-hotspot-6-opt.jpg"
+              src="./10089.jpg"
               alt=""
             />
           </span>
@@ -32,13 +32,13 @@ const product_collection = () => {
         <div className="child flex flex-col gap-4">
           <span>
             <img
-              src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-hotspot-2-opt.jpg"
+              src="./10073.jpg"
               alt=""
             />
           </span>
           <span className="block w-full h-full rounded-[12px] p-[22px] max-h-[186px]"
             style={{
-              backgroundImage: `url(${"https://dsrsrc.site/wp-content/uploads/2023/04/wd-futniture-banner-bg-2-1.jpg"})`,
+              backgroundImage: `url(${"./10097.webp"})`,
             }}>
               <span className="flex flex-col gap-1"><h1 className="text-[32px]">GLADØM</h1><p className={`${workSans.className} text-[14px] text-[#767676]`}>The new common language will be more simple and regular than the existing languages</p></span>
             </span>
@@ -46,27 +46,27 @@ const product_collection = () => {
         <div className="child flex flex-col gap-4">
          
           <span>
-           <video src="https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-hotspot-video.mp4" autoPlay loop/>
+           <video src="./wd-furniture-hotspot-video-opt.mp4" autoPlay loop muted/>
           </span>
           <span>
-            <img src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-hotspot-7-opt.jpg" alt="" />
+            <img src="./10037.jpg" alt="" />
           </span>
         </div>
         <div className="child flex flex-col gap-4">
-          <span className="block w-full h-full rounded-[12px] p-[22px] max-h-[186px]" style={{backgroundImage : "url(https://dsrsrc.site/wp-content/uploads/2023/04/wd-futniture-banner-bg-1-1.jpg)"}}>
+          <span className="block w-full h-full rounded-[12px] p-[22px] max-h-[186px]" style={{backgroundImage : `url(${"./10038.jpg"})`}}>
           <span className="flex flex-col gap-1"><h1 className="text-[32px]">HÄLLAN</h1><p className={`${workSans.className} text-[14px] text-[#767676]`}>The new common language will be more simple and regular than the existing languages</p></span>
            
           </span>
           <span>
-            <img src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-hotspot-4-opt.jpg" alt="" />
+            <img src="./10088.jpg" alt="" />
           </span>
         </div>
         <div className="child max-[1024px]:hidden flex flex-col gap-4 ">
           <span>
-            <img src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-hotspot-5-opt.jpg" alt="" />
+            <img src="./10039.jpg" alt="" />
           </span>
           <span>
-            <img src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-hotspot-8-opt.jpg" alt="" />
+            <img src="./10091.jpg" alt="" />
           </span>
         </div>
       </div>

@@ -18,7 +18,7 @@ function m_nav() {
           <li>
             <img
               className="w-[180px] lg:w-[210px] h-[40px] max-w-[210px]"
-              src="https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-logo-black.svg"
+              src="./10007.svg"
               decoding="async"
             />
           </li>

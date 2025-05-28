@@ -1,98 +1,102 @@
 import React, { useState } from "react";
 import { urbanist } from "@/pages/_app";
 const bestseller = () => {
-  const items = [
+  const items = [ 
     {
-      id: 1,
-      name: "Chairs",
-      category: "Chairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-chair-prod-13-1-350x400.jpg",
-      price: 120.0,
-      rating: 5,
-      colors: [
-        { name: "American Silver", code: "rgb(205,206,208)" },
-        { name: "Jet", code: "rgb(54,54,54)" },
-        { name: "Venetian Red", code: "rgb(204,21,18)" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Sofas",
-      category: "Sofas",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-sofa-prod-8-1-350x400.jpg",
-      price: 510.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 3,
-      name: "Tables",
-      category: "Tables",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-tables-prod-16-1-350x400.jpg",
-      price: 440.0,
-      rating: null,
-      colors: [],
-    },
+          id: 1,
+          name: "Curve",
+          category: "Chairs",
+          img: "./10016.jpg",
+          price: 320.0,
+          rating: 5,
+          colors: [],
+        },
+        {
+          id: 2,
+          name: "Can",
+          category: "Sofas",
+          img: "./10017.jpg",
+          price: 2100.0,
+          rating: null,
+          colors: [],
+        },
+        {
+          id: 3,
+          name: "Giro LR",
+          category: "Tables",
+          img: "./10018.jpg",
+          price: 680.0,
+          rating: null,
+          colors: [{name : "American Silver" , code : "rgb(205,206,208)"},
+            {name : "French Bistre" , code : "rgb(127,111,75)"},
+            {name : "Gray" ,code : "rgb(129,122,130)"}
+          ]
+        },
     {
       id: 4,
-      name: "Armchairs",
+      name: "Belt",
       category: "Armchairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-armchair-prod-6-1-350x400.jpg",
-      price: 340.0,
+      img: "./10030.jpg",
+      price: 449.0,
       rating: null,
       colors: [],
     },
     {
       id: 5,
-      name: "Accessories",
-      category: "Accessories",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-storage-prod-3-1-350x400.jpg",
-      price: 215.0,
+      name: "Soft Edge",
+      category: "Chairs",
+      img: "./10019.jpg",
+      price: 440.0,
       rating: null,
-      colors: [],
+      colors: [{ name: "American Silver", code: "rgb(205,206,208)" },
+            { name: "Jet", code: "rgb(54,54,54)" },
+            { name: "Venetian Red", code: "rgb(204,21,18)" },
+          ],
     },
     {
       id: 6,
-      name: "Toys",
-      category: "Toys",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-toys-prod-2-1-350x400.jpg",
-      price: 80.0,
+      name: "Pallisade",
+      category: "Sofas",
+      img: "./10020.jpg",
+      price: 1890.0,
       rating: null,
       colors: [],
     },
     {
       id: 7,
-      name: "Textiles",
-      category: "Textiles",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-textile-prod-4-1-350x400.jpg",
-      price: 99.0,
+      name: "Bitta",
+      category: "Tables",
+      img: "./10021.jpg",
+      price: 1519.0,
       rating: null,
       colors: [],
     },
     {
       id: 8,
-      name: "Lighting",
-      category: "Lighting",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-lighting-prod-5-1-350x400.jpg",
-      price: 199.0,
+      name: "Albert",
+      category: "Armchairs",
+      img: "./10081.jpg",
+      price: 1600.0,
       rating: null,
-      colors: [],
+      colors: [{name : "French Bistre" , code : "rgb(127,111,75)"},
+        { name: "Jet", code: "rgb(54,54,54)" }
+      ],
     },
     {
       id: 9,
-      name: "Decor",
-      category: "Decor",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-decor-prod-9-1-350x400.jpg",
-      price: 110.0,
+      name: "Navona",
+      category: "Sofas",
+      img: "./10022.jpg",
+      price: 1669.0,
       rating: null,
       colors: [],
     },
     {
       id: 10,
-      name: "Beds",
-      category: "Beds",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-beds-prod-10-1-350x400.jpg",
-      price: 899.0,
+      name: "Aruda",
+      category: "Tables",
+      img: "./10023.jpg",
+      price: 699.0,
       rating: null,
       colors: [],
     },
@@ -121,7 +125,7 @@ const activeStyle = "underline underline-offset-4 decoration-solid decoration-2 
       <div className="items-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:gap-6 md:gap-4 gap-2 ">
         {items.map((item) => (
           <div
-            className="relative item z-20 p-2 bg-white rounded-2xl lg:max-h-[400px] transition-transform duration-300 ease-in-out group lg:hover:-translate-y-4 md:overflow-hidden"
+            className="relative item z-20 p-2 bg-white rounded-2xl lg:max-h-[400px] transition-transform duration-300 group lg:hover:-translate-y-1 md:overflow-hidden"
             key={item.id}
           >
              <span className="absolute w-[95%] tag mb-3 flex justify-between items-center p-[4px_15px] font-bold uppercase">
@@ -143,22 +147,22 @@ const activeStyle = "underline underline-offset-4 decoration-solid decoration-2 
               className="mt-3"
               width={258}
               height={259}
-              src={items[0].img}
+              src={item.img}
               alt=""
             />
             <span className="arrows h-[20px] inset-0 text-[#767676] w-full absolute top-[30%] text-[25px] lg:flex hidden justify-between items-center">
               <i className="ri-arrow-left-s-line group-hover:translate-0 -translate-x-full transition-transform duration-300 ease-in-out"></i>
               <i className="ri-arrow-right-s-line group-hover:translate-0 translate-x-full transition-transform duration-300 ease-in-out"></i>
             </span>
-            <div className="data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out lg:group-hover:-translate-y-10">
+            <div className="data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out lg:group-hover:-translate-y-10 bg-white">
               <span className="flex justify-between items-center font-bold">
-                <h1 className="max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]">{item.name}</h1>
+                <h1 className={` ${urbanist.className} max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]`}>{item.name}</h1>
                 <span>
                   {items[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>
-              <span className="flex justify-between items-center text-[#767676] font-bold text-[12.8px] max-[768.5px]:text-[14.25px]">
+              <span className="flex justify-between items-center text-[#a5a5a5] font-medium text-[12.8px] max-[768.5px]:text-[14.25px]">
                <h1 className="max-[548px]:text-[12.8px] min-[768.5px]:text-[14.25px]">
 				{item.category}
 				</h1> 

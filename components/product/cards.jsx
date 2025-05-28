@@ -1,5 +1,5 @@
 import { urbanist, workSans } from '@/pages/_app';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const cards = () => {
     const items = [
@@ -98,13 +98,49 @@ const cards = () => {
       colors: [],
     },
   ];
+  const[change ,setChange] =useState(0);
+  useEffect(()=>{
+    console.log(change);
+    
+  },[change]);
+
+   const [slideWidth, setSlideWidth] = useState(282);
+   
+  useEffect(() => {
+    const updateSlideWidth = () => {
+      const width = window.innerWidth;
+      if (width >= 1200) setSlideWidth((window.innerWidth - 120) / 5)
+     else if (width >= 1024) setSlideWidth((window.innerWidth - 0) / 5);         // Large screens
+      else if (width >= 768) setSlideWidth((window.innerWidth - 25) / 4 );     // Medium screens
+      else setSlideWidth((window.innerWidth - 32) / 2);                       // Mobile
+    };
+
+    updateSlideWidth(); // run on mount
+    window.addEventListener('resize', updateSlideWidth); // run on resize
+
+    return () => window.removeEventListener('resize', updateSlideWidth);
+  }, []);
+  useEffect(() => {
+    
+   console.log(slideWidth);
+   
+  }, [slideWidth]);
   return (
-    <div className={`${workSans.className} pt-[90px]`}>
-      <h1 className={`${urbanist.className} text-[22px] font-bold text-[#242424 mb-[20px]`}>Related Products</h1>
-      <div className="items-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:gap-6 md:gap-4 gap-2 ">
-        {items.map((item) => (
+    <div className={`${workSans.className} pt-[90px] relative translate-x-[${change}px] group/main min-[1200px]:p-[50px_72px] p-[20px_15px] overflow-hidden`}>
+
+      <h1 className={`${urbanist.className} lg:text-[22px] text-[20px] font-bold text-[#242424 mb-[20px]`}>Related Products</h1>
+    
+       <span className="arrows h-[20px] font-light inset-0 text-[#76767669] w-full absolute top-[50%] lg:text-4xl text-3xl flex justify-between items-center">
+              <i className={`ri-arrow-left-s-line group-hover/main:translate-x-5 group-hover/main:opacity-100 lg:opacity-0  lg:-translate-x-full transition-all duration-300 ease-in-out max-[1224px]:-translate-x-2 ${change === 0 ? "text-[76767669]": "text-[#767676]"}`} onClick={()=>{change > 0 ? setChange(change-1) : console.log(change,"no previous item");
+              }}></i>
+              <i className={`ri-arrow-right-s-line group-hover/main:-translate-x-5  group-hover/main:opacity-100 lg:opacity-0 lg:translate-x-full transition-all duration-300 ease-in-out max-[1224px]:translate-x-2 ${change+5 === items.length ? "text-[76767669]": "text-[#767676]"}`} onClick={()=>{change + 5 < items.length ? setChange(change+1) : console.log(change,"no previous item")}}></i>
+            </span>
+      <div className='overflow-hidden'>
+      <div className={`items-container flex lg:w-max w-full lg:gap-6 md:gap-4 gap-2  transition-transform duration-300 ease-in-out `} style={{transform : `translateX(${change >= 0 ? -change*slideWidth : change*slideWidth }px)`}}>
+        
+        {items.map((item,index) => (
           <div
-            className="relative item z-20 p-2 bg-white rounded-2xl lg:max-h-[400px]  group md:overflow-hidden"
+            className="relative item z-20 p-2 bg-white flex-shrink-0 rounded-2xl lg:max-h-[400px] lg:max-w-[258px] min-[1200px]:w-[calc((100vw_-_240px)_/_5)] min-[1024px]:w-[calc((100vw_-126px)_/_5)] max-[1024px]:w-[calc((100vw_-_85px)_/_4)] max-[768px]:w-[calc((100vw_-_48px)_/_2)] group md:overflow-hidden"
             key={item.id}
           >
              <span className="absolute w-[95%] tag mb-3 flex justify-between items-center p-[4px_15px] font-bold uppercase">
@@ -135,18 +171,18 @@ const cards = () => {
             </span>
             <div className="data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out lg:group-hover:-translate-y-10">
               <span className="flex justify-between items-center font-bold">
-                <h1 className="max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]">{item.name}</h1>
-                <span>
+                <h1 className={`max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] text-[#333333] ${urbanist.className}`}>{item.name}{index}</h1>
+                <span className='font-medium'>
                   {items[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>
-              <span className="flex justify-between items-center text-[#767676] font-bold text-[12.8px] max-[768.5px]:text-[14.25px]">
+              <span className="flex justify-between items-center text-[#767676] font-medium text-[12.8px] max-[768.5px]:text-[14.25px]">
                <h1 className="max-[548px]:text-[12.8px] min-[768.5px]:text-[14.25px]">
 				{item.category}
 				</h1> 
               </span>
-              <span className="flex justify-between items-center text-[rgb(245,154,87)] font-bold max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]">
+              <span className="flex justify-between items-center text-[rgb(245,154,87)] font-medium max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]">
                 <h1>${item.price}</h1>
                 <span className="colors flex mt-[-10px]">
                   {item.colors.map((color,index) => (
@@ -181,6 +217,7 @@ const cards = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   )

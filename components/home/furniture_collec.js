@@ -4,32 +4,28 @@ const furniture_collec = () => {
      const items = [
         {
           id: 1,
-          name: "Chairs",
+          name: "Frames Upholstered",
           category: "Chairs",
-          img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-chair-prod-13-1-350x400.jpg",
-          price: 120.0,
+          img: "./10106.jpg",
+          price: 399.0,
           rating: 5,
-          colors: [
-            { name: "American Silver", code: "rgb(205,206,208)" },
-            { name: "Jet", code: "rgb(54,54,54)" },
-            { name: "Venetian Red", code: "rgb(204,21,18)" },
-          ],
+          colors: [],
         },
         {
           id: 2,
-          name: "Sofas",
-          category: "Sofas",
-          img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-sofa-prod-8-1-350x400.jpg",
-          price: 510.0,
+          name: "Skygarden",
+          category: "Lighting",
+          img: "./10107.jpg",
+          price: 780.0,
           rating: null,
           colors: [],
         },
         {
           id: 3,
-          name: "Tables",
-          category: "Tables",
-          img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-tables-prod-16-1-350x400.jpg",
-          price: 440.0,
+          name: "Mags",
+          category: "Sofas",
+          img: "./10108.jpg",
+          price: 3620.0,
           rating: null,
           colors: []
         }
@@ -74,7 +70,7 @@ const furniture_collec = () => {
               className="mt-3"
               width={258}
               height={259}
-              src={items[0].img}
+              src={item.img}
               alt=""
             />
             <span className="arrows h-[20px] inset-0 text-[#767676] w-full absolute top-[30%] text-[25px] lg:flex hidden justify-between items-center">
@@ -83,13 +79,13 @@ const furniture_collec = () => {
             </span>
             <div className="data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out lg:group-hover:-translate-y-10">
               <span className="flex justify-between items-center font-bold">
-                <h1 className="max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]">{item.name}</h1>
+                <h1 className={`max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] ${urbanist.className}`}>{item.name}</h1>
                 <span>
                   {items[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>
-              <span className="flex justify-between items-center text-[#767676] font-bold text-[12.8px] max-[768.5px]:text-[14.25px]">
+              <span className="flex justify-between items-center text-[#a5a5a5] font-bold text-[12.8px] max-[768.5px]:text-[14.25px]">
                <h1 className="max-[548px]:text-[12.8px] min-[768.5px]:text-[14.25px]">
 				{item.category}
 				</h1> 
@@ -132,7 +128,7 @@ const furniture_collec = () => {
           </div>
         </span>
         <span className="w-full h-full">
-            <img className='w-[100%] h-[90%] rounded-[12px]'   src="https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-hotspot-9.jpg" alt="" />
+            <img className='w-[100%] h-[90%] rounded-[12px]'   src="./10105.jpg" alt="" />
         </span>
 
     </div>

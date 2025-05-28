@@ -196,7 +196,7 @@ ul li{
   width: 24px;
   height: 24px;
 }
-.review input,textarea{
+.review input,.review textarea{
   border-radius: 20px;
   border: 1px solid rgba(0,0,0,0.15);
   height: 42px;
@@ -217,13 +217,59 @@ margin-block: 10px;
   border-radius: 40px;
 }
 .review label{
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 10px;
 }
 .r span{
   color: #E01020;
   font-size: 16px;
   line-height: 1;
+}
+.cart table{
+  border-collapse : collapse;
+  background-color: white;
+  width: 100%;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+.cart table th{
+  font-weight: 500;
+  text-align: left;
+  padding: 15px 10px;
+  text-transform: capitalize;
+  color: #242424;
+  font-size: 16px;
+  font-weight: bold;
+  width: 50%;
+}
+.cart table td{
+     padding: 15px 12px;
+    vertical-align: middle;
+    text-align: start;
+    width: 50%;
+}
+.cart thead th:first-of-type{
+  padding: 15px 10px 15px 0;
+  width: 40px;
+}
+.cart table th:last-of-type ,.cart table td:last-of-type{
+  text-align: end;
+}
+.cart table th:nth-child(2){
+  width: 10px;
+}
+.cart table tr{
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.cart tfoot th{
+  text-align: start !important;
+}
+.cart tfoot tr:last-of-type{
+  border: none;
+}
+.cart table th:first-of-type{
+  padding: 15px 10px 15px 0;
+  width: 0;
 }

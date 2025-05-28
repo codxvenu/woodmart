@@ -5,32 +5,32 @@ function shop_brand() {
   {
     name: "Elitis",
     place: "Talosa / France",
-    icon: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-circle-brand-elitis-1-64x64.png",
-    img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-brand-bg-elitis.jpg"
+    icon: "./10024.png",
+    img: "./10053.jpg"
   },
   {
     name: "Hay",
     place: "Barcelona / Spain",
-    icon: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-circle-brand-hay-1-64x64.png",
-    img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-brand-bg-hay.jpg"
+    icon: "./10025.png",
+    img: "./10054.jpg"
   },
   {
     name: "Kettal",
     place: "Barcelona / Spain",
-    icon: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-circle-brand-kettal-1-64x64.png",
-    img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-brand-bg-kettal.jpg"
+    icon: "./10026.png",
+    img: "./10055.jpg"
   },
   {
     name: "Llardo",
     place: "Valencia / Spain",
-    icon: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-circle-brand-lladro-1-64x64.png",
-    img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-brand-bg-lladro.jpg"
+    icon: "./10027.png",
+    img: "./10056.jpg"
   },
   {
     name: "Poliform",
     place: "Como / Italy",
-    icon: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-circle-brand-poliform-1-64x64.png",
-    img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-brand-bg-poliform.jpg"
+    icon: "./10028.png",
+    img: "./10057.jpg"
   }
 ];
  

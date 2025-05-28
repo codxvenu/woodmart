@@ -7,21 +7,21 @@ function Carousel() {
         {
         "id" : 1,
         "img" : "/slide1.jpg",
-        "icon" : "https://dsrsrc.site/wp-content/uploads/2023/04/wd-slide-icon-decor.svg", 
+        "icon" : "./10008.svg", 
         "content" : "decor",
         "price" : "182"
         },
         {
             "id" : 2,
             "img" : "/slide2.jpg",
-            "icon" : "https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-slide-icon-chair.svg", 
+            "icon" : "./10010.svg", 
             "content" : "chair",
             "price" : "468"
         },
         {
             "id" : 3,
             "img" : "/slide3.jpg",
-            "icon" : "https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-slide-icon-sofas.svg", 
+            "icon" : "./10012.svg",
             "content" : "sofas",
             "price" : "3620"
         },
@@ -42,7 +42,7 @@ const [ids,setIds] = useState(0)
 ></div>
 
             </span>
-            <div className={`absolute top-[20%] lg:top-[35%] flex flex-col gap-[38vh] p-5 md:p-8 ${urbanist.className}`}>
+            <div className={`absolute top-[20%] lg:top-[30%] flex flex-col gap-[38vh] p-5 md:p-8 ${urbanist.className}`}>
 
             <span className="data flex items-center justify-center gap-[18px] font-[700] text-[#242424CC] transition-transform duration-500 translate-y-[-100%]">
               <span className='bg-[#7777776f] w-[74px] h-[74px] rounded-[100%] flex items-center justify-center'>
@@ -78,7 +78,7 @@ const [ids,setIds] = useState(0)
               <i class="ri-arrow-right-s-line text-2xl "></i>
               </span>
             </div>
-            <div className="history grid grid-cols-3 p-[7px_10px] justify-center items-center absolute w-[65px] h-[24px] rounded-2xl top-[95%] transform-[translateX(-50%)] left-[50%] bg-white gap-2 max-[1024px]:top-[82%]">
+            <div className="history grid grid-cols-3 p-[7px_10px] justify-center items-center absolute w-[65px] h-[24px] rounded-2xl top-[90%] transform-[translateX(-50%)] left-[50%] bg-white gap-2 max-[1024px]:top-[82%]">
               <span className={ids=== 0? 'bg-[#333] rounded-[50%] w-[10px] h-[10px] ' : "bg-[#bbb] rounded-[50%] w-[10px] h-[10px]"}></span>
               <span className={ids=== 1? 'bg-[#333] rounded-[50%] w-[10px] h-[10px] ' : "bg-[#bbb] rounded-[50%] w-[10px] h-[10px]"}></span>
               <span className={ids=== 2? 'bg-[#333] rounded-[50%] w-[10px] h-[10px]' : "bg-[#bbb] rounded-[50%] w-[10px] h-[10px]"}></span>

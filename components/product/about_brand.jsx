@@ -3,7 +3,10 @@ import React from 'react'
 
 const about_brand = () => {
   return (
-    <div className={`${workSans.className} p-[20px] rounded-2xl bg-white text-[15px]`}>
+    <div className={`${workSans.className} min-[1200px]:p-[50px_72px] p-[20px_5px] text-[15px]`}>
+      <span className='p-[20px] rounded-2xl bg-white block'>
+
+     
       <h1 className={`${urbanist.className} text-[22px] text-[#242424] font-bold mb-4`}>About brand</h1>
       <div className='grid grid-cols-2 '>
         <img className='rounded-2xl w-[650px] h-[430px] object-cover' src="https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/about-brand-3.jpg.webp" alt="" />
@@ -44,6 +47,7 @@ const about_brand = () => {
             </p>
         </div>
       </div>
+       </span>
     </div>
   )
 }

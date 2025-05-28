@@ -2,9 +2,11 @@ import React from 'react'
 import { urbanist, workSans } from '@/pages/_app'
 const review = () => {
   return (
-    <div className={`${workSans.className} p-[20px] rounded-2xl bg-white text-[15px]`}>
-          <h1 className={`${urbanist.className} text-[22px] font-bold`}>Customer Reviews</h1>
-      <div className='grid grid-cols-2 gap-6'>
+    <div className={`${workSans.className} min-[1200px]:p-[50px_72px] p-[20px_15px]  text-[15px]`}>
+      <span className='block p-[20px] rounded-2xl bg-white'>
+
+          <h1 className={`${urbanist.className} lg:text-[22px] text-[20px] font-bold`}>Customer Reviews</h1>
+      <div className='grid lg:grid-cols-2  gap-6'>
       
 <div className='flex flex-col items-center'>
     <h2 className='text-[60px] font-bold'>5</h2>
@@ -82,10 +84,10 @@ const review = () => {
        0</li>
         </ul>
 </div>
-<div className='p-3 flex flex-col gap-4 text-[#242424] r'>
+<div className='lg:p-3 flex flex-col gap-4 text-[#242424] r'>
   <h2 className={`${urbanist.className} font-bold text-black`}>Add a review</h2>
   <p className='text-[#777777]'>Your email address will not be published. Required fields are marked <span>*</span></p>
-  <h2>Your rating <span>*</span>:</h2>
+  <h2>Your rating <span>*</span>:{[1,2,3,4,5].map(()=>( <i className=" ri-star-line hover:ri-star-fill hover:text-[#EABE12] text-[#bbb] text-[15px]"></i>))}</h2>
   <form className='flex flex-col justify-start review'>
     <label htmlFor="review">Your review <span>*</span></label>
     <textarea name="review" id=""></textarea>
@@ -100,8 +102,8 @@ const review = () => {
           </button>
   </form>
 </div>
-<div className="col-span-2">
-  <span className='flex justify-between items-center mb-4'><h1 className={`${urbanist.className} font-bold`}>2 reviews for Giro LR</h1> <span className="block w-fit rounded-4xl pr-3 text-[#777777] border-2 border-[rgba(0,0,0,0.1)] bg-white">
+<div className="lg:col-span-2">
+  <span className='lg:flex grid gap-5 justify-between items-center mb-4'><h1 className={`${urbanist.className} font-bold`}>2 reviews for Giro LR</h1> <span className="block w-fit rounded-4xl pr-3 text-[#777777] border-2 border-[rgba(0,0,0,0.1)] bg-white">
                <select
                 name="sort"
                 id=""
@@ -116,7 +118,7 @@ const review = () => {
               </select>
             </span>
             </span>
-            <div className='grid grid-cols-2 gap-5 text-[#777777]'>
+            <div className='grid lg:grid-cols-2 gap-5 text-[#777777]'>
               <div className='rounded-[10px] border-[1px] border-[rgba(0,0,0,0.105)]'>
                 <span className='p-4 flex flex-col gap-4'>
                 <span className='flex justify-between'><h1 className='font-bold text-[#242424]'>Ema Norton</h1><h3>April 12, 2023</h3></span>
@@ -173,6 +175,7 @@ const review = () => {
             </div>
 </div>
       </div>
+      </span>
       
     </div>
   )

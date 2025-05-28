@@ -8,15 +8,15 @@ import Cards from '@/components/product/cards'
 const product = () => {
   return (
     <div   style={{backgroundImage : "url(/bg.jpg)"}}>
-      {/* <Head/>
-      <Content/> */}
-      <span className='min-[1200px]:p-[50px_72px] p-[20px_5px] block'>
-        {/* <Data/> */}
+      <Head/>
+      <Content/>
+    
+        <Data/>
 
         {/* <About_brand/> */}
         <Review/>
         <Cards/>
-      </span>
+    
     </div>
   )
 }

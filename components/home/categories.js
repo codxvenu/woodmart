@@ -4,52 +4,52 @@ import { urbanist } from '@/pages/_app';
 const categories = () => {
     const data = [
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-tables.jpg",
+          "img": "10063.jpg",
           "pname": "Tables",
           "pquantity": "10"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-sofas.jpg",
+          "img": "./10064.jpg",
           "pname": "Sofas",
           "pquantity": "10"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-chairs.jpg",
+          "img": "./10062.jpg",
           "pname": "Chairs",
           "pquantity": "10"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-category-armchairs.jpg",
+          "img": "./10065.jpg",
           "pname": "Armchairs",
           "pquantity": "10"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-category-storage.jpg",
-          "pname": "Accessories",
+          "img": "./10067.jpg",
+          "pname": "Storage",
           "pquantity": "2"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-toys-opt.jpg",
+          "img": "./10070.jpg",
           "pname": "Toys",
           "pquantity": "0"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-textiles-opt.jpg",
+          "img": "./10068.jpg",
           "pname": "Textiles",
           "pquantity": "0"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-lighting-opt.jpg",
+          "img": "./10069.jpg",
           "pname": "Lighting",
           "pquantity": "0"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-decor-opt.jpg",
+          "img": "./10071.jpg",
           "pname": "Decor",
           "pquantity": "0"
         },
         {
-          "img": "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-category-beds-opt.jpg",
+          "img": "./10066.jpg",
           "pname": "Beds",
           "pquantity": "0"
         }
