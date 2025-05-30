@@ -1,8 +1,17 @@
-import React, { useState } from "react";
-
+import React, { useState,useContext } from "react";
+import { useRouter } from 'next/router';
+import { Product } from '@/context/ProductContext';
 function m_nav() {
   const [nav, setNav] = useState(false);
   const [menu, setMenu] = useState(false);
+   const router = useRouter();
+    const {product, setProduct} = useContext(Product);
+    const handleClick = (product) => {
+      if(product){
+        setProduct(product);
+        router.push("/product_category");
+      }
+    };
   return (
     <>
       <nav className="lg:hidden flex pl-[1rem] py-2 z-1">
@@ -80,44 +89,44 @@ function m_nav() {
             />
             {!menu && (
               <ul className="z">
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+               <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Chairs"); }}>
                  <img src="./Chair.svg" alt="" />
                 
                   <h1>Chairs</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Tables")}}>
                  <img src="table.svg" alt="" />
                   <h1>Tables</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Sofas")}}>
                   <img src="/sofas.svg" alt="" />
                   <h1>Sofas</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Armchairs")}}>
                   <img src="/armchair.svg" alt="" />
                   <h1>Armchairs</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Beds")}}>
                 <img src="/bed.svg" alt="" />
                   <h1>Beds</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Storage")}}>
                   <img src="/storage.svg" alt="" />
                   <h1>storage</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Textile")}}>
                 <img src="/textile.svg" alt="" />
                   <h1>textiles</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Lighting")}}>
                  <img src="/lighting.svg" alt="" />
                   <h1>lighting</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Toys")}}>
                <img src="/toy.svg" alt="" />
                   <h1>Toys</h1>
                 </li>
-                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium">
+                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Decor")}}>
               <img src="/decor.svg" alt="" />
                   <h1>Decor</h1>
                 </li>
