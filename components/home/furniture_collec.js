@@ -1,35 +1,8 @@
 import React from 'react'
 import { urbanist,workSans } from '@/pages/_app'
+import data from '@/itemz'
 const furniture_collec = () => {
-     const items = [
-        {
-          id: 1,
-          name: "Frames Upholstered",
-          category: "Chairs",
-          img: "./10106.jpg",
-          price: 399.0,
-          rating: 5,
-          colors: [],
-        },
-        {
-          id: 2,
-          name: "Skygarden",
-          category: "Lighting",
-          img: "./10107.jpg",
-          price: 780.0,
-          rating: null,
-          colors: [],
-        },
-        {
-          id: 3,
-          name: "Mags",
-          category: "Sofas",
-          img: "./10108.jpg",
-          price: 3620.0,
-          rating: null,
-          colors: []
-        }
-      ];
+
   return (
        <div className={`${urbanist.className} lg:p-[55px_72px] p-[30px_5px] min-[768px]:grid lg:grid-cols-[1.6fr_1fr] grid-cols-2 flex flex-col max-[1024px]:gap-2 gap-8 overflow-hidden`}>
         <span className=''>
@@ -44,7 +17,7 @@ const furniture_collec = () => {
             </small>
           </span>
           <div className="items-container max-[768px]:w-full max-[1024px]:w-[50vw] w-full flex lg:gap-6 md:gap-4 gap-2 overflow-scroll scrollbar-hide">
-            {items.map((item) => (
+            {data.slice(0,3).map((item) => (
          <div
   className={`relative item z-20 p-2 bg-white rounded-2xl lg:max-h-[calc(425px-2vw)]  max-[768px]:w-[calc(50vw-17px)] w-[calc(25vw-17px)] lg:w-[calc((61.54vw-158px)/3)]
  flex-shrink-0 group md:overflow-hidden`}
@@ -81,7 +54,7 @@ const furniture_collec = () => {
               <span className="flex justify-between items-center font-bold">
                 <h1 className={`max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] ${urbanist.className}`}>{item.name}</h1>
                 <span>
-                  {items[0].rating}
+                  {data[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>

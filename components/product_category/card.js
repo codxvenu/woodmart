@@ -1,196 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { urbanist, workSans } from "@/pages/_app";
-const card = ({ classes ,start, end, page }) => {
-  const items = [
-    {
-      id: 1,
-      name: "Chairs",
-      category: "Chairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-chair-prod-13-1-350x400.jpg",
-      price: 120.0,
-      rating: 4,
-      colors: [
-        { name: "American Silver", code: "rgb(205,206,208)" },
-        { name: "Jet", code: "rgb(54,54,54)" },
-        { name: "Venetian Red", code: "rgb(204,21,18)" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Sofas",
-      category: "Sofas",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-sofa-prod-8-1-350x400.jpg",
-      price: 510.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 3,
-      name: "Tables",
-      category: "Tables",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-tables-prod-16-1-350x400.jpg",
-      price: 440.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 4,
-      name: "Armchairs",
-      category: "Armchairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-armchair-prod-6-1-350x400.jpg",
-      price: 340.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 5,
-      name: "Accessories",
-      category: "Accessories",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-storage-prod-3-1-350x400.jpg",
-      price: 215.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 6,
-      name: "Toys",
-      category: "Toys",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-toys-prod-2-1-350x400.jpg",
-      price: 80.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 7,
-      name: "Textiles",
-      category: "Textiles",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-textile-prod-4-1-350x400.jpg",
-      price: 99.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 8,
-      name: "Lighting",
-      category: "Lighting",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-lighting-prod-5-1-350x400.jpg",
-      price: 199.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 9,
-      name: "Decor",
-      category: "Decor",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-decor-prod-9-1-350x400.jpg",
-      price: 110.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 10,
-      name: "Beds",
-      category: "Beds",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-beds-prod-10-1-350x400.jpg",
-      price: 899.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 1,
-      name: "Chairs",
-      category: "Chairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-chair-prod-13-1-350x400.jpg",
-      price: 120.0,
-      rating: 4,
-      colors: [
-        { name: "American Silver", code: "rgb(205,206,208)" },
-        { name: "Jet", code: "rgb(54,54,54)" },
-        { name: "Venetian Red", code: "rgb(204,21,18)" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Sofas",
-      category: "Sofas",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-sofa-prod-8-1-350x400.jpg",
-      price: 510.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 3,
-      name: "Tables",
-      category: "Tables",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-tables-prod-16-1-350x400.jpg",
-      price: 440.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 4,
-      name: "Armchairs",
-      category: "Armchairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-armchair-prod-6-1-350x400.jpg",
-      price: 340.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 5,
-      name: "Accessories",
-      category: "Accessories",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-storage-prod-3-1-350x400.jpg",
-      price: 215.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 6,
-      name: "Toys",
-      category: "Toys",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-toys-prod-2-1-350x400.jpg",
-      price: 80.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 7,
-      name: "Textiles",
-      category: "Textiles",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-textile-prod-4-1-350x400.jpg",
-      price: 99.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 8,
-      name: "Lighting",
-      category: "Lighting",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-lighting-prod-5-1-350x400.jpg",
-      price: 199.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 9,
-      name: "Decor",
-      category: "Decor",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-decor-prod-9-1-350x400.jpg",
-      price: 110.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 10,
-      name: "Beds",
-      category: "Beds",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-beds-prod-10-1-350x400.jpg",
-      price: 899.0,
-      rating: null,
-      colors: [],
-    },
-  ];
+import {  useRouter } from "next/router";
+import { Product } from "@/context/ProductContext";
+import data  from "@/itemz";
+const card = ({ classNamees ,start, end, page }) => {
+
+  const{items, product ,setItems}=useContext(Product)
+
+  
+  const router = useRouter();
   const[small,setsmall] = useState(false);
 useEffect(() => {
   window.scrollTo({ top: 0 , behavior: "smooth" });
@@ -210,19 +28,18 @@ useEffect(() => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 return (
     <div className={`${workSans.className} md:pt-[30px] pt-[20px]`}>
-    {small && classes === 1 ? 
+    {small && classNamees === 1 ? 
 
       <div
-        className={`items-container grid grid-cols-${classes} md:gap-4 gap-4 `}
+        className={`items-container grid grid-cols-${classNamees} md:gap-4 gap-4 `}
       >
-        {items.slice(start,end+1).map((item,index) => (
-          <div key={index} className="relative flex md:flex-row flex-col items-center flex-[0_0_300px] md:p-[30px] p-[10px] bg-white rounded-[10px] group">
+        {data.slice(start,end+1).filter((idx)=>idx.category === product || product === "shop" ).map((item,index) => (
+          <div key={index} className="relative cursor-pointer flex md:flex-row flex-col items-center flex-[0_0_300px] md:p-[30px] p-[10px] bg-white rounded-[10px] group" onClick={()=>{setItems(item);  router.push("/product");}}>
             <span className="relative lg:w-[300px] flex justify-center">
               <span className="overflow-hidden relative flex justify-center">
-                <img className="md:max-w-[300px] max-w-[80%]" src={items[0].img} alt="" />
+                <img className="md:max-w-[300px] max-w-[80%]" src={item.img} alt="" />
                 <span className="arrows h-[20px] inset-0 text-[#767676] w-full absolute top-[50%] text-[25px] lg:flex hidden justify-between items-center">
                   <i className="ri-arrow-left-s-line group-hover:translate-0 -translate-x-full transition-transform duration-300 ease-in-out"></i>
                   <i className="ri-arrow-right-s-line group-hover:translate-0 translate-x-full transition-transform duration-300 ease-in-out"></i>
@@ -241,7 +58,7 @@ return (
                 </h1>
                 <span>
                   {[1, 2, 3, 4, 5].map((rate) =>
-                    rate <= items[0].rating ? (
+                    rate <= data[0].rating ? (
                       <i className="ri-star-fill text-[#EABE12]"></i>
                     ) : (
                       <i className="ri-star-line text-[#bbb]"></i>
@@ -272,7 +89,7 @@ return (
                 </span>
                 <p className="text-[#777777] text-[15px] font-normal md:block hidden">
                   Soft curves and tapering slender lines are inspired by modern
-                  design. The result is a classic yet contemporary chair,
+                  design. The result is a classNameic yet contemporary chair,
                   ideally combined with the table by the same name.
                 </p>
               </span>
@@ -325,12 +142,12 @@ return (
         ))}
       </div>
     :
-        <div className={`items-container grid  md:grid-cols-${classes} grid-cols-2  lg:gap-6 md:gap-4 gap-2 `}>
-        {items.slice(start,end+1).map((item,index) => (
+        <div className={`items-container grid  md:grid-cols-${classNamees} grid-cols-2  lg:gap-6 md:gap-4 gap-2 `}>
+        {data.slice(start,end+1).filter((idx)=>idx.category === product || product === "shop" ).map((item,index) => (
           <div
-            className={classes === 4? "relative item z-20 p-2 bg-white rounded-2xl transition-transform duration-300 ease-in-out group lg:hover:-translate-y-4 md:overflow-hidden  h-[380px]" : "relative item z-20 p-2 bg-white rounded-2xl transition-transform duration-300 ease-in-out group lg:hover:-translate-y-4  md:overflow-hidden lg:max-h-[476px]"}
+            className={classNamees === 4? "relative item z-20 p-2 bg-white rounded-2xl transition-transform duration-300 ease-in-out group lg:hover:-translate-y-4 md:overflow-hidden  h-[380px] cursor-pointer" : "relative item z-20 p-2 bg-white rounded-2xl transition-transform duration-300 ease-in-out group lg:hover:-translate-y-4 cursor-pointer  md:overflow-hidden lg:max-h-[476px]"}
             key={index}
-          >
+          onClick={()=>{setItems(item);  router.push("/product");}}>
              <span className="absolute w-[95%] tag mb-3 flex justify-between items-center p-[4px_15px] font-bold uppercase">
               <h1 className="text-[12px]">Sold out</h1>
 			  <span className="flex flex-col justify-center items-center gap-0.5 group/color w-[22px]">
@@ -350,18 +167,18 @@ return (
               className="mt-3 w-full"
               width={258}
               height={259}
-              src={items[0].img}
+              src={item.img}
               alt=""
             />
             <span className="arrows h-[20px] inset-0 text-[#767676] w-full absolute top-[30%] text-[25px] lg:flex hidden justify-between items-center">
               <i className="ri-arrow-left-s-line group-hover:translate-0 -translate-x-full transition-transform duration-300 ease-in-out"></i>
               <i className="ri-arrow-right-s-line group-hover:translate-0 translate-x-full transition-transform duration-300 ease-in-out"></i>
             </span>
-            <div className={classes === 4 ? "data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out lg:group-hover:-translate-y-8 translate-y-4" : `data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out  lg:group-hover:-translate-y-8 min-[768px]:translate-y-2 translate-y-4`}>
+            <div className={classNamees === 4 ? "data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out lg:group-hover:-translate-y-8 translate-y-4" : `data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out  lg:group-hover:-translate-y-8 min-[768px]:translate-y-2 translate-y-4`}>
               <span className="flex justify-between items-center font-medium">
                 <h1 className="max-[548px]:text-[13.5px] lg:text-[15px] ">{item.name}</h1>
                 <span>
-                  {items[0].rating}
+                  {data[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>

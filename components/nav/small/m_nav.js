@@ -9,7 +9,7 @@ function m_nav() {
         <ul className="flex items-center gap-[20px] justify-between w-[100%]">
           <li>
             <i
-              class="ri-menu-line text-[20px]"
+              className="ri-menu-line text-[20px]"
               onClick={() => {
                 nav === false ? setNav(true) : setNav(false);
               }}
@@ -164,7 +164,7 @@ function m_nav() {
           </li>
 
           <li>
-            <i class="!text-[22px] ri-user-line"></i>
+            <i className="!text-[22px] ri-user-line"></i>
             <h1 className="!normal-case">My account</h1>
           </li>
         </ul>

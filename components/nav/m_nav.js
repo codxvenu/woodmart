@@ -2,7 +2,7 @@ import React from "react";
 
 function m_nav(){
 return(
-    <nav className="lg:block hidden px-20 py-2">
+    <nav className="lg:block hidden px-20 py-2 bg-[rgba(251,250,247,1)]">
         <ul className="flex items-center gap-[27px]">
             <li><img className="w-[210px] h-[40px] max-w-[210px]" src="./10007.svg" decoding="async"/></li>
             <li className="w-[52%] flex items-center"><i className="ri-search-line text-[rgb(119, 119, 119)] relative left-[30px]"></i><input className="w-[100%] border-[1px] border-[rgba(0,0,0,0.1)] rounded-3xl p-[0.4rem] px-[2.4rem]" type="text" placeholder="Search for products" /></li>

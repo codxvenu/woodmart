@@ -1,3 +1,6 @@
+import ProductContext from "@/context/ProductContext";
+import Nav from "./nav";
+import Footer from "./footer";
 import "@/styles/globals.css";
 import { Work_Sans , Urbanist } from 'next/font/google';
 import 'remixicon/fonts/remixicon.css'
@@ -16,7 +19,12 @@ export const urbanist = Urbanist({
 export default function App({ Component, pageProps }) {
   return (
     <main className={workSans.className}>
+      <ProductContext>
+        <Nav />
+        
       <Component {...pageProps} />
+      <Footer />
+      </ProductContext>
     </main>
   );
 }

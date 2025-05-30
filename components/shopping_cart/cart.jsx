@@ -25,7 +25,7 @@ const cart = () => {
                 </thead>
                 <tbody>
                     <tr>
-                    <td><i class="ri-close-line"></i></td>
+                    <td><i className="ri-close-line"></i></td>
                     <td><img className="max-w-[80px]" src="https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-furniture-tables-prod-13-1.jpg" alt="" /></td>
                     <td>Giro LR</td>
                     <td>$449.00</td>

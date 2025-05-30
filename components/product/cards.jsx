@@ -1,108 +1,15 @@
 import { urbanist, workSans } from '@/pages/_app';
-import React, { useEffect, useState } from 'react'
-
+import React, { useEffect, useState ,useContext } from 'react'
+import { Product } from "@/context/ProductContext";
+import data from '@/itemz';
 const cards = () => {
-    const items = [
-    {
-      id: 1,
-      name: "Chairs",
-      category: "Chairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-chair-prod-13-1-350x400.jpg",
-      price: 120.0,
-      rating: 5,
-      colors: [
-        { name: "American Silver", code: "rgb(205,206,208)" },
-        { name: "Jet", code: "rgb(54,54,54)" },
-        { name: "Venetian Red", code: "rgb(204,21,18)" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Sofas",
-      category: "Sofas",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-sofa-prod-8-1-350x400.jpg",
-      price: 510.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 3,
-      name: "Tables",
-      category: "Tables",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-tables-prod-16-1-350x400.jpg",
-      price: 440.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 4,
-      name: "Armchairs",
-      category: "Armchairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-armchair-prod-6-1-350x400.jpg",
-      price: 340.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 5,
-      name: "Accessories",
-      category: "Accessories",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-storage-prod-3-1-350x400.jpg",
-      price: 215.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 6,
-      name: "Toys",
-      category: "Toys",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-toys-prod-2-1-350x400.jpg",
-      price: 80.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 7,
-      name: "Textiles",
-      category: "Textiles",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-textile-prod-4-1-350x400.jpg",
-      price: 99.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 8,
-      name: "Lighting",
-      category: "Lighting",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-lighting-prod-5-1-350x400.jpg",
-      price: 199.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 9,
-      name: "Decor",
-      category: "Decor",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-decor-prod-9-1-350x400.jpg",
-      price: 110.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 10,
-      name: "Beds",
-      category: "Beds",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-beds-prod-10-1-350x400.jpg",
-      price: 899.0,
-      rating: null,
-      colors: [],
-    },
-  ];
   const[change ,setChange] =useState(0);
+  const{items} = useContext(Product);
+
   useEffect(()=>{
-    console.log(change);
+    console.log(items,"data",data[0]);
     
-  },[change]);
+  },[]);
 
    const [slideWidth, setSlideWidth] = useState(282);
    
@@ -138,7 +45,7 @@ const cards = () => {
       <div className='overflow-hidden'>
       <div className={`items-container flex lg:w-max w-full lg:gap-6 md:gap-4 gap-2  transition-transform duration-300 ease-in-out `} style={{transform : `translateX(${change >= 0 ? -change*slideWidth : change*slideWidth }px)`}}>
         
-        {items.map((item,index) => (
+        {data.filter((idx)=>(idx.category === items.category)).map((item,index) => (
           <div
             className="relative item z-20 p-2 bg-white flex-shrink-0 rounded-2xl lg:max-h-[400px] lg:max-w-[258px] min-[1200px]:w-[calc((100vw_-_240px)_/_5)] min-[1024px]:w-[calc((100vw_-126px)_/_5)] max-[1024px]:w-[calc((100vw_-_85px)_/_4)] max-[768px]:w-[calc((100vw_-_48px)_/_2)] group md:overflow-hidden"
             key={item.id}
@@ -162,7 +69,7 @@ const cards = () => {
               className="mt-3"
               width={258}
               height={259}
-              src={items[0].img}
+              src={item.img}
               alt=""
             />
             <span className="arrows h-[20px] inset-0 text-[#767676] w-full absolute top-[30%] text-[25px] lg:flex hidden justify-between items-center">
@@ -173,7 +80,7 @@ const cards = () => {
               <span className="flex justify-between items-center font-bold">
                 <h1 className={`max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] text-[#333333] ${urbanist.className}`}>{item.name}{index}</h1>
                 <span className='font-medium'>
-                  {items[0].rating}
+                  {data[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>

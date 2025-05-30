@@ -1,7 +1,24 @@
-import {React , useState} from 'react'
+import {React , useState , useContext} from 'react'
 import { urbanist, workSans } from '@/pages/_app'
+import {Product} from "@/context/ProductContext";
 const order = () => {
-    const [itemCount, setItemCount] = useState(1);
+    const {cart , setCart} = useContext(Product);
+    const total = cart.reduce((sum,idx)=>sum + idx.price * idx.quantity , 0);
+    const handleQuantity = (idx, quantity)=>{
+       const updatedquantity = cart.map(item=>{
+        if(item.name === idx.name){
+          
+
+            return {...item, quantity: quantity}
+        }else{
+          return item
+        }
+       })
+       setCart(updatedquantity);
+       
+       
+    }
+    console.log(cart);
   return (
     <div className={`${workSans.className} lg:w-1/2 lg:ml-[25%] cart`}>
        <span className='flex p-5 bg-[rgba(16,16,16,0.05)] rounded-xl max-h-[66px] mt-10'>
@@ -11,21 +28,24 @@ const order = () => {
                 <thead><tr><th>Product</th>
                 <th>subtotal</th></tr></thead>
                 <tbody>
-                    <tr>
+                  {cart.map((item, index) => (
+
+
+                    <tr key={item.id}>
                         <td className="w-full">
                             <div className="flex justify-between w-full">
                                 <span className='flex gap-2 items-center text-[15px]'>
-                                    <i class="ri-close-line"></i> <img className="max-w-[65px]" src="https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-furniture-tables-prod-13-1.jpg" alt="" />
+                                    <i className="ri-close-line"></i> <img className="max-w-[65px]" src={item.img} alt="" />
                                     <span className="flex flex-col gap-2">
-                                        <h1 className="text-[#777777]">Giro LR</h1>
+                                        <h1 className="text-[#777777]">{item.name}</h1>
                                           <span className="flex items-center lg:w-[20%] text-[#777777]">
-            <button className="p-[5px] min-w-[25px]  border-[1px] border-[rgba(0,0,0,0.1)] rounded-l-4xl cursor-pointer hover:bg-[rgb(245,154,87)] hover:text-white transition-colors ease-in-out duration-75" onClick={()=>{itemCount > 0? setItemCount(itemCount -1 ) : alert("cant order less than 1 product") }}>
+            <button className="p-[5px] min-w-[25px]  border-[1px] border-[rgba(0,0,0,0.1)] rounded-l-4xl cursor-pointer hover:bg-[rgb(245,154,87)] hover:text-white transition-colors ease-in-out duration-75" onClick={()=>{item.quantity > -1? handleQuantity(item,item.quantity - 1) : alert("cant order less than 1 product") }}>
               -
             </button>
             <h3 className="border-[1px] border-[rgba(0,0,0,0.1)] border-x-0 p-[5px] min-w-[30px] text-center">
-              {itemCount}
+              {item.quantity}
             </h3>
-            <button className="p-[5px] min-w-[25px] border-[1px] border-[rgba(0,0,0,0.1)] rounded-r-xl cursor-pointer hover:bg-[rgb(245,154,87)] hover:text-white transition-colors ease-in-out duration-75" onClick={()=>{itemCount < 20 ? setItemCount(itemCount + 1 ) : alert("cant order more than 20 product")}}>
+            <button className="p-[5px] min-w-[25px] border-[1px] border-[rgba(0,0,0,0.1)] rounded-r-xl cursor-pointer hover:bg-[rgb(245,154,87)] hover:text-white transition-colors ease-in-out duration-75" onClick={()=>{item.quantity < 20 ? handleQuantity(item,item.quantity + 1): alert("cant order more than 20 product")}}>
               +
             </button>
           </span>
@@ -34,13 +54,14 @@ const order = () => {
                                
                             </div>
                         </td>
-                        <td> <h1>$12,123.00</h1></td>
+                        <td> <h1 className="text-[#777777]">${item.price * item.quantity}.00</h1></td>
                     </tr>
+                  ))}
                 </tbody>
                 <tfoot>
                   <tr>
                     <th className={`${urbanist.className}`}>Subtotal</th>
-                    <td><h2 className="text-[#f59a57] font-semibold">$12,123.00</h2></td>
+                    <td><h2 className="text-[#f59a57] font-semibold">${total}.00</h2></td>
                   </tr>
                   <tr>
                     <th className={`${urbanist.className}`}>Shipping</th>
@@ -48,7 +69,7 @@ const order = () => {
                   </tr>
                    <tr>
                     <th className={`${urbanist.className}`}>Total </th>
-                    <td><h2 className="text-[#f59a57] font-semibold text-[19.5px]">$12,123.00</h2></td>
+                    <td><h2 className="text-[#f59a57] font-semibold text-[19.5px]">${total}.00</h2></td>
                   </tr>
                 </tfoot>
             </table>

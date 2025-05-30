@@ -69,13 +69,13 @@ const [ids,setIds] = useState(0)
               ids === 0 ? setIds(2):setIds(ids-1)
             }}>
               
-              <i class="ri-arrow-left-s-line  text-2xl "></i>
+              <i className="ri-arrow-left-s-line  text-2xl "></i>
               </span>
             <span className='bg-white rounded-[50%] w-[40px] h-[40px] flex justify-center items-center' onClick={()=>{
               ids === 2 ? setIds(0):setIds(ids+1)
             }}>
               
-              <i class="ri-arrow-right-s-line text-2xl "></i>
+              <i className="ri-arrow-right-s-line text-2xl "></i>
               </span>
             </div>
             <div className="history grid grid-cols-3 p-[7px_10px] justify-center items-center absolute w-[65px] h-[24px] rounded-2xl top-[90%] transform-[translateX(-50%)] left-[50%] bg-white gap-2 max-[1024px]:top-[82%]">

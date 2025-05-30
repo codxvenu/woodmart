@@ -133,13 +133,13 @@ const review = () => {
           )}
               </span> 
           <p>Usually, we prefer the real thing, wine without sulfur based preservatives, real butter, not margarine, and so we’d like our layouts and designs to be filled with real words, with thoughts that count, information that has value.</p>
-          <span className='flex gap-4'><i class="ri-thumb-up-line"></i>0
-          <i class="ri-thumb-down-line"></i>0</span>
+          <span className='flex gap-4'><i className="ri-thumb-up-line"></i>0
+          <i className="ri-thumb-down-line"></i>0</span>
           </span>
           <div className='flex flex-col gap-4 border-t-[1px] border-t-[rgba(0,0,0,0.105)] p-4 bg-[rgba(0,0,0,0.04)]'>
 
           <span className='flex justify-between '>
-            <span className='flex items-center text-[#242424] font-bold'><i class="ri-store-line text-[rgb(245,154,87)] font-normal text-[22px] mr-2"></i>Mr. Mackay</span>
+            <span className='flex items-center text-[#242424] font-bold'><i className="ri-store-line text-[rgb(245,154,87)] font-normal text-[22px] mr-2"></i>Mr. Mackay</span>
             <h2>April 12, 2023</h2>
             </span>
             <p>Rigid proponents of content strategy may shun the use of dummy copy but then designers might want to ask them to provide style sheets with the copy decks they supply that are in tune with the design direction they require.</p>
@@ -159,13 +159,13 @@ const review = () => {
           )}
               </span> 
           <p>Usually, we prefer the real thing, wine without sulfur based preservatives, real butter, not margarine, and so we’d like our layouts and designs to be filled with real words, with thoughts that count, information that has value.</p>
-          <span className='flex gap-4'><i class="ri-thumb-up-line"></i>0
-          <i class="ri-thumb-down-line"></i>0</span>
+          <span className='flex gap-4'><i className="ri-thumb-up-line"></i>0
+          <i className="ri-thumb-down-line"></i>0</span>
           </span>
           <div className='flex flex-col gap-4 border-t-[1px] border-t-[rgba(0,0,0,0.105)] p-4 bg-[rgba(0,0,0,0.04)]'>
 
           <span className='flex justify-between '>
-            <span className='flex items-center text-[#242424] font-bold'><i class="ri-store-line text-[rgb(245,154,87)] font-normal text-[22px] mr-2"></i>Mr. Mackay</span>
+            <span className='flex items-center text-[#242424] font-bold'><i className="ri-store-line text-[rgb(245,154,87)] font-normal text-[22px] mr-2"></i>Mr. Mackay</span>
             <h2>April 12, 2023</h2>
             </span>
             <p>Rigid proponents of content strategy may shun the use of dummy copy but then designers might want to ask them to provide style sheets with the copy decks they supply that are in tune with the design direction they require.</p>

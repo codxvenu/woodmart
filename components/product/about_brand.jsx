@@ -12,19 +12,19 @@ const about_brand = () => {
         <img className='rounded-2xl w-[650px] h-[430px] object-cover' src="https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/about-brand-3.jpg.webp" alt="" />
         <div className='flex flex-col gap-9 p-2'>
         <span className=' text-2xl flex justify-between w-[95%]'><h1 className={`${urbanist.className} text-[26px] text-[#242424] font-bold`}>KETTAL</h1> <small className='text-[15px] font-medium text-[#333333] flex items-center gap-2 sub'><a>Share:</a> <a href="" className=''>
-          <i class="ri-facebook-fill"></i>
+          <i className="ri-facebook-fill"></i>
           </a>
           <a href="">
 
-            <i class="ri-twitter-x-line"></i>
+            <i className="ri-twitter-x-line"></i>
           </a>
           <a href="">
 
-            <i class="ri-pinterest-fill"></i>
+            <i className="ri-pinterest-fill"></i>
           </a>
           <a href="">
 
-            <i class="ri-linkedin-fill"></i>
+            <i className="ri-linkedin-fill"></i>
           </a>  <button className="bg-[rgb(245,154,87)] p-[5px_20px] text-[13px] rounded-[20px] text-white min-h-[42px]">
            Contact us
           </button></small></span>

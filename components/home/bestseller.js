@@ -1,106 +1,8 @@
 import React, { useState } from "react";
 import { urbanist } from "@/pages/_app";
+import data from "@/itemz";
 const bestseller = () => {
-  const items = [ 
-    {
-          id: 1,
-          name: "Curve",
-          category: "Chairs",
-          img: "./10016.jpg",
-          price: 320.0,
-          rating: 5,
-          colors: [],
-        },
-        {
-          id: 2,
-          name: "Can",
-          category: "Sofas",
-          img: "./10017.jpg",
-          price: 2100.0,
-          rating: null,
-          colors: [],
-        },
-        {
-          id: 3,
-          name: "Giro LR",
-          category: "Tables",
-          img: "./10018.jpg",
-          price: 680.0,
-          rating: null,
-          colors: [{name : "American Silver" , code : "rgb(205,206,208)"},
-            {name : "French Bistre" , code : "rgb(127,111,75)"},
-            {name : "Gray" ,code : "rgb(129,122,130)"}
-          ]
-        },
-    {
-      id: 4,
-      name: "Belt",
-      category: "Armchairs",
-      img: "./10030.jpg",
-      price: 449.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 5,
-      name: "Soft Edge",
-      category: "Chairs",
-      img: "./10019.jpg",
-      price: 440.0,
-      rating: null,
-      colors: [{ name: "American Silver", code: "rgb(205,206,208)" },
-            { name: "Jet", code: "rgb(54,54,54)" },
-            { name: "Venetian Red", code: "rgb(204,21,18)" },
-          ],
-    },
-    {
-      id: 6,
-      name: "Pallisade",
-      category: "Sofas",
-      img: "./10020.jpg",
-      price: 1890.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 7,
-      name: "Bitta",
-      category: "Tables",
-      img: "./10021.jpg",
-      price: 1519.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 8,
-      name: "Albert",
-      category: "Armchairs",
-      img: "./10081.jpg",
-      price: 1600.0,
-      rating: null,
-      colors: [{name : "French Bistre" , code : "rgb(127,111,75)"},
-        { name: "Jet", code: "rgb(54,54,54)" }
-      ],
-    },
-    {
-      id: 9,
-      name: "Navona",
-      category: "Sofas",
-      img: "./10022.jpg",
-      price: 1669.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 10,
-      name: "Aruda",
-      category: "Tables",
-      img: "./10023.jpg",
-      price: 699.0,
-      rating: null,
-      colors: [],
-    },
-  ];
+ 
 const[tab,setTab] = useState("all");
 const activeStyle = "underline underline-offset-4 decoration-solid decoration-2 decoration-amber-500 text-black transition-colors duration-200";
 
@@ -123,7 +25,7 @@ const activeStyle = "underline underline-offset-4 decoration-solid decoration-2 
 
       </span>
       <div className="items-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  lg:gap-6 md:gap-4 gap-2 ">
-        {items.map((item) => (
+        {data.map((item) => (
           <div
             className="relative item z-20 p-2 bg-white rounded-2xl lg:max-h-[400px] transition-transform duration-300 group lg:hover:-translate-y-1 md:overflow-hidden"
             key={item.id}
@@ -158,7 +60,7 @@ const activeStyle = "underline underline-offset-4 decoration-solid decoration-2 
               <span className="flex justify-between items-center font-bold">
                 <h1 className={` ${urbanist.className} max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]`}>{item.name}</h1>
                 <span>
-                  {items[0].rating}
+                  {data[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>

@@ -1,4 +1,5 @@
 import React from "react";
+
 import Carousel from "@/components/home/Carousel";
 import Categories from "@/components/home/categories";
 import Bestseller from "@/components/home/bestseller";
@@ -9,6 +10,9 @@ import Rules from "@/components/home/rules";
 
 const home = ()=>{
     return (
+      <>
+      
+      
         <div  style={{backgroundImage : "url(/bg.jpg)"}}>
       <Carousel/>
       <Categories/>
@@ -18,7 +22,10 @@ const home = ()=>{
       <Furniture_col/>
       <Rules/>
       
+      
         </div>
+        
+      </>
     )
 }
 

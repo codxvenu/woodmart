@@ -1,21 +1,34 @@
+import { Product } from "@/context/ProductContext";
 import { urbanist, workSans } from "@/pages/_app";
-import React, { useState ,useEffect } from "react";
-
+import React, { useState ,useEffect, useContext } from "react";
+import Side_cart from "../shopping_cart/side_cart";
+import { useRouter } from "next/router";
 const content = () => {
-
+    const {items ,cart, setCart} = useContext(Product)
     const [itemCount , setItemCount] = useState(1);
+    const [side,setSide] = useState(0);
     const[show,setShow] = useState(0);
+    const router = useRouter();
     useEffect(() => {
-      console.log(show);
-        
-    }, [show]);
+      
+    }, [itemCount]);
+const handleCart= ()=>{
 
+  const item = cart.some(item=>item.name===items.name);
+  if(item){
+    setCart(cart.map(item=>item.name===items.name? {...item,quantity:item.quantity+itemCount}:item))
+  }else{
+    setCart([...cart,{...items,quantity:itemCount}])
+  }
+}
   return (
+    <>
+    
     <div className={`${workSans.className} grid lg:grid-cols-[1.15fr_.85fr] gap-5 bg-white min-[1200px]:p-[10px_72px] p-[20px_15px] `}>
       <div className="grid lg:grid-cols-2 grid-rows-2 gap-5">
         <img
         className="rounded-[6px] max-h-[438px]"
-          src="https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-furniture-tables-prod-13-1.jpg"
+          src={items.img}
           alt=""
         />
        <a className="max-h-[438px] flex"> 
@@ -43,7 +56,7 @@ const content = () => {
       <div className="flex flex-col text-[15px] gap-5">
         <span className="grid grid-cols-[3.5fr_.5fr] mt-[10px]">
           <h1 className={`${urbanist.className} lg:text-[28px] text-[22px] font-bold`}>
-            Giro LR
+           {items.name}
           </h1>
           <a className="w-[100px] p-[10px] shadow-[0_0_2px_rgba(0,0,0,0.12)]">
             <img className=" max-w-[80px]" src="./kettal.jpg.webp" alt="" />
@@ -75,11 +88,11 @@ const content = () => {
           </span>
         </span>
         <p className="text-[#777777]">
-          A new classic for the contemporary dining room, the Mondrian table
+          A new classNameic for the contemporary dining room, the Mondrian table
           reinterprets the light and elegant design of the sofa and coffee table
           collection of the same name.
         </p>
-        <small className="lg:text-[34px] text-[22px] text-[#F59a57] font-medium">$449.00</small>
+        <small className="lg:text-[34px] text-[22px] text-[#F59a57] font-medium">${items.price}.00</small>
         <span className="lg:flex grid grid-cols-[1fr_2fr] gap-4 w-full">
           <span className="flex items-center lg:w-[20%] text-[#777777]">
             <button className="px-2 py-2 border-[1px] border-[rgba(0,0,0,0.1)] rounded-l-4xl cursor-pointer hover:bg-[rgb(245,154,87)] hover:text-white transition-colors ease-in-out duration-75" onClick={()=>{itemCount > 0? setItemCount(itemCount -1 ) : alert("cant order less than 1 product") }}>
@@ -92,32 +105,37 @@ const content = () => {
               +
             </button>
           </span>
-          <button className="bg-[rgb(245,154,87)] lg:w-[35%] rounded-[20px] text-white cursor-pointer">
+          <button className="bg-[rgb(245,154,87)] lg:w-[35%] rounded-[20px] text-white cursor-pointer" onClick={()=>{setSide(true); handleCart()}}>
             Add to cart
           </button>
-          <button className="bg-black text-white lg:w-[35%] rounded-[20px] col-span-2 py-2 cursor-pointer">
+          <button className="bg-black text-white lg:w-[35%] rounded-[20px] col-span-2 py-2 cursor-pointer" onClick={()=>{router.push("./checkout")}}>
             Buy now
           </button>
         </span>
         <span className="lg:flex grid grid-cols-2 lg:gap-4 gap-2 text-[#333] mt-6 font-medium cursor-pointer">
-        <h2 className="col-span-2"><i class="ri-shuffle-line text-[16px] mr-2 "></i>Add to compare</h2>
-        <h2><i class="ri-heart-line text-[16px] mr-2"></i>Add to wishlist</h2>
-        <h2><i class="ri-ruler-line text-[16px] mr-2"></i>Size Guide</h2></span>
+        <h2 className="col-span-2"><i className="ri-shuffle-line text-[16px] mr-2 "></i>Add to compare</h2>
+        <h2><i className="ri-heart-line text-[16px] mr-2"></i>Add to wishlist</h2>
+        <h2><i className="ri-ruler-line text-[16px] mr-2"></i>Size Guide</h2></span>
         <ul>
             <li className="overflow-hidden text-[#242424]  relative cursor-pointer" onClick={()=>{show === 1? setShow(0) : setShow(1)}}> <span className="flex justify-between items-center">
-               <h2>Shipping and returns</h2><i class={`ri-arrow-drop-down-line ${show===1 ? "rotate-180": "rotate-0"} text-3xl text-[#bbb] transition-transform duration-200 ease-in-out`} ></i>
+               <h2>Shipping and returns</h2><i className={`ri-arrow-drop-down-line ${show===1 ? "rotate-180": "rotate-0"} text-3xl text-[#bbb] transition-transform duration-200 ease-in-out`} ></i>
               </span>
             <p className={`text-[#777777] mt-[10px] text-start transition-all duration-200 ease-in-out ${show===1? "h-auto" : "h-0"}`}>Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever. Not so fast, I’d say, there are some redeeming factors in favor of greeking text, as its use is merely the symptom of a worse problem to take into consideration.</p>
             </li>
             <hr className="border-[#bbb] my-3" />
              <li className="overflow-hidden text-[#242424] cursor-pointer  relative" onClick={()=>{show === 2? setShow(0) : setShow(2)}}> <span className="flex justify-between items-center">
-               <h2>Product care</h2><i class={`ri-arrow-drop-down-line ${show===2 ? "rotate-180": "rotate-0"} text-3xl text-[#bbb] transition-transform duration-200 ease-in-out`} ></i>
+               <h2>Product care</h2><i className={`ri-arrow-drop-down-line ${show===2 ? "rotate-180": "rotate-0"} text-3xl text-[#bbb] transition-transform duration-200 ease-in-out`} ></i>
               </span>
             <p className={`mt-[10px] text-start transition-all duration-200 ease-in-out text-[#777777] ${show===2? "h-auto" : "h-0"}`}>Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever. Not so fast, I’d say, there are some redeeming factors in favor of greeking text, as its use is merely the symptom of a worse problem to take into consideration.</p>
             </li>
             </ul>
       </div>
     </div>
+{
+  side &&
+    <Side_cart setSide={setSide} />
+}
+    </>
   );
 };
 

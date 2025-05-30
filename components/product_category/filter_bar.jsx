@@ -86,7 +86,7 @@ const handleMaxRangeChange = (e) => {
             type="text"
             placeholder="Find a Brand"
           />
-            <i class="ri-search-line absolute right-4 text-[#757575] text-[20px]"></i>
+            <i className="ri-search-line absolute right-4 text-[#757575] text-[20px]"></i>
         </span>
         <span>
           <span className="flex justify-between items-center">
@@ -135,7 +135,7 @@ const handleMaxRangeChange = (e) => {
             type="text"
             placeholder="Find a Color"
           />
-          <i class="ri-search-line absolute right-4 text-[#757575] text-[20px]"></i>
+          <i className="ri-search-line absolute right-4 text-[#757575] text-[20px]"></i>
         </span>
         <span className="flex flex-col gap-3 max-h-[223px] text-[#757575] overflow-y-scroll custom-scroll pr-[5px]">
           <span className="flex justify-between py-[5px]">

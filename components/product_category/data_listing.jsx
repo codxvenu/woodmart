@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { workSans } from "@/pages/_app";
 import Card from "./card";
 import Filter_bar from "./filter_bar";
+import {Product} from "@/context/ProductContext";
+import itemz from "@/itemz";
 const data_listing = () => {
+  const {product} = useContext(Product);
   const [display_size, setDisplaysize] = useState(9);
   const [display_type, setDisplaytype] = useState(3);
-  const count = 20;
+  const count = product === "shop"
+  ? itemz.length
+  : itemz.reduce((sum, idx) => sum + (product === idx.category ? 1 : 0), 0);
+  console.log(product,itemz,product === itemz[0].category);
+  
   const [page, setPage] = useState(0);
   const [start, setStart] = useState(0);
   const total_pages = Math.ceil(count / display_size);
@@ -41,7 +48,7 @@ const data_listing = () => {
               : `Showing all ${count} results`}
           </small>
           <span className="flex items-center gap-4">
-            <ul className="flex items-center gap-1.5 !text-[15px] text-[#757575]">
+            <ul className="flex items-center gap-1.5 !text-[15px] text-[#757575] cursor-pointer">
               <li>Show:</li>
               <li
                 className={display_size === 9 ? "active" : ""}
@@ -79,7 +86,7 @@ const data_listing = () => {
                 24
               </li>
             </ul>
-            <span className="icons_container flex gap-2">
+            <span className="icons_container flex gap-2 cursor-pointer">
               <i
                 className={
                   display_type === 1
@@ -129,7 +136,7 @@ const data_listing = () => {
       </div>
       <div className=" min-[1200px]:hidden flex justify-between px-[5px] text-[#333333] ">
         <span className="flex gap-2  items-center" onClick={()=>{showFilterBar === true ? setShowFilterBar(false) : setShowFilterBar(true)}}>
-          <i class="ri-menu-fill text-[20px] font-normal"></i>
+          <i className="ri-menu-fill text-[20px] font-normal"></i>
           <small className="text-[15px] font-bold">Show sidebar</small>
         </span>
         <span className="block relative">
@@ -145,13 +152,13 @@ const data_listing = () => {
                 <option className="text-black" value="">Sort by price : low to high</option>
                 <option className="text-black" value="">Sort by price : high to low</option>
               </select>
-        <i class="ri-arrow-up-down-line font-normal text-[20px]"></i>
+        <i className="ri-arrow-up-down-line font-normal text-[20px]"></i>
         </span>
         {showFilterBar && 
         <div>
          <span className="bg-[rgba(0,0,0,0.8)] block w-screen h-screen fixed top-0 left-0 z-[100]" onClick={()=>setShowFilterBar(false)}></span>
         <div className="fixed w-fit h-screen bg-white top-0 left-0 overflow-x-hidden overflow-y-scroll min-[1200px]:hidden z-[100]">
-           <span className="p-[15px] flex items-center justify-end gap-0.5 border-[1px] border-[#76767643]" onClick={()=>setShowFilterBar(false)}><i class="ri-close-fill text-2xl"></i><small className="text-[#333333] text-[15px] font-medium">Close</small></span>
+           <span className="p-[15px] flex items-center justify-end gap-0.5 border-[1px] border-[#76767643]" onClick={()=>setShowFilterBar(false)}><i className="ri-close-fill text-2xl"></i><small className="text-[#333333] text-[15px] font-medium">Close</small></span>
 
           <Filter_bar/>
         </div>
@@ -159,13 +166,13 @@ const data_listing = () => {
          } 
       </div>
       <Card
-        classes={display_type}
+        classNamees={display_type}
         start={start}
         page={page}
         end={display_size * (page + 1)}
       />
       {total_pages !== 1 && (
-        <ul className="flex gap-3 justify-center items-center mt-4">
+        <ul className="flex gap-3 justify-center items-center mt-4 cursor-pointer">
           {total_pages - page !== total_pages && (
             <li
               onClick={() => {
@@ -173,11 +180,11 @@ const data_listing = () => {
               }}
               className="flex  items-center justify-center px-[5px] min-w-[34px] h-[34px] text-[18px] rounded-[5px] transition-all duration-[.2s] ease-linear text-[#242424]"
             >
-              <i class="ri-arrow-left-s-line"></i>
+              <i className="ri-arrow-left-s-line"></i>
             </li>
           )}
           {[...Array(total_pages)].map((i, index) => (
-            <li>
+            <li key={index}>
               <span
                 className={
                   page !== index
@@ -201,7 +208,7 @@ const data_listing = () => {
               }}
               className="flex  items-center justify-center px-[5px] min-w-[34px] h-[34px] text-[18px] rounded-[5px] transition-all duration-[.2s] ease-linear text-[#242424]"
             >
-              <i class="ri-arrow-right-s-line"></i>
+              <i className="ri-arrow-right-s-line"></i>
             </li>
           )}
         </ul>

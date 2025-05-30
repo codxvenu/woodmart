@@ -39,19 +39,19 @@ const footer = () => {
         <span className='sub flex  items-center gap-2 max-[768px]:mb-2 mb-[36px] lg:mb-16'>
           <h1 className='min-[1200px]:text-[24px] text-[18px]'>Subscibe us : </h1>
           <a href="" className=''>
-          <i class="ri-facebook-fill"></i>
+          <i className="ri-facebook-fill"></i>
           </a>
           <a href="">
 
-            <i class="ri-twitter-x-line"></i>
+            <i className="ri-twitter-x-line"></i>
           </a>
           <a href="">
 
-            <i class="ri-pinterest-fill"></i>
+            <i className="ri-pinterest-fill"></i>
           </a>
           <a href="">
 
-            <i class="ri-linkedin-fill"></i>
+            <i className="ri-linkedin-fill"></i>
           </a>
         </span>
         <span className='flex gap-4 flex-col'>
