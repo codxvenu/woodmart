@@ -10,6 +10,7 @@ function m_nav() {
       if(product){
         setProduct(product);
         router.push("/product_category");
+        setNav(!nav)
       }
     };
   return (
