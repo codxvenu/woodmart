@@ -799,158 +799,168 @@ const data = [
     rating: null,
     colors: []
   },
-{
-    id: 159,
-    name: "Grace",
-    category: "Chairs",
-    img: "https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-furniture-chair-prod-3-1-400x457.jpg",
-    price: 485.0,
+  {
+    id: 81,
+    name: "Stonewashed Tana",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-16-1.jpg",
+    price: 67,
     rating: null,
     colors: []
   },
-{
-        id: 58,
-        name: "Gabri",
-        category: "Beds",
-        img: "/wd-furniture-beds-prod-8-1.jpg",
-        price: 960,
-        rating: null,
-        colors: []
-    },
-{
-        id: 61,
-        name: "Yume",
-        category: "Beds",
-        img: "/wd-furniture-beds-prod-5-1.jpg",
-        price: 3420,
-        rating: null,
-        colors: []
-    },
-{
-        id: 52,
-        name: "Be Look",
-        category: "Beds",
-        img: "/wd-furniture-beds-prod-14-1.jpg",
-        price: 1200,
-        rating: null,
-        colors: []
-    },
-{
-        id: 53,
-        name: "Add Look",
-        category: "Beds",
-        img: "/wd-furniture-beds-prod-13-1.jpg",
-        price: 1320,
-        rating: null,
-        colors: []
-    },
-{
+  {
+    id: 82,
+    name: "Maya Dune Linel",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-15-1.jpg",
+    price: 530,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 83,
+    name: "Architecture Throw",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-14-1.jpg",
+    price: 380,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 84,
+    name: "Green Sway",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-13-1.jpg",
+    price: 2340,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 85,
+    name: "Miha",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-12-1.jpg",
+    price: 120,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 86,
+    name: "Zaid",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-11-1.jpg",
+    price: 780,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 87,
+    name: "Nidodape",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-10-1.jpg",
+    price: 16,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 88,
+    name: "Cobblestone",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-9-1.jpg",
+    price: 499,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 89,
+    name: "Louise",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-8-1.jpg",
+    price: 230,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 90,
+    name: "Stoense",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-7-1.jpg",
+    price: 230,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 91,
+    name: "Isabel",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-6-1.jpg",
+    price: 15,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 92,
+    name: "Max",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-5-1.jpg",
+    price: 1180,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 93,
+    name: "Hem",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-4-1.jpg",
+    price: 45,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 94,
+    name: "Mediteranni",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-3-1.jpg",
+    price: 540,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 95,
+    name: "Mega Dot",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-2-1.jpg",
+    price: 85,
+    rating: null,
+    colors: []
+  },
+  {
+    id: 96,
+    name: "Sentiero Di Fillipo",
+    category: Textile,
+    img: "./wd-furniture-textiles-prod-1-1.jpg",
+    price: 3200,
+    rating: null,
+    colors: []
+  }
+
+  ,{
     id: 97,
     name: "Ivy&Seed",
     category: "Lighting",
-    img: "/wd-furniture-lighting-prod-16-1.jpg",
+    img: "./wd-furniture-lighting-prod-16-1.jpg",
     price: 130,
     rating: null,
     colors: []
   },
-{
-        id: 116,
-        name: "Christmas Mouse",
-        category: "Toys",
-        img: "/wd-furniture-toys-prod-13-1.jpg",
-        price: 48,
-        rating: null,
-        colors: []
-    },
-{
-    id: 99,
-    name: "Ice Cream",
+  {
+    id: 98,
+    name: "Mademoiselle Annette",
     category: "Lighting",
-    img: "/wd-furniture-lighting-prod-14-1.jpg",
-    price: 850,
+    img: "./wd-furniture-lighting-prod-15-1.jpg",
+    price: 680,
     rating: null,
     colors: []
-  },
-{
-    id: 146,
-    name: "Avana",
-    category: "Chairs",
-    img: "https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-furniture-chair-prod-9-1-400x457.jpg",
-    price: 538.0,
-    rating: 5.0,
-    colors: []
-  },
-{
-        id: 123,
-        name: "Wautomobile",
-        category: "Toys",
-        img: "/wd-furniture-toys-prod-6-1.jpg",
-        price: 20,
-        rating: null,
-        colors: []
-    },
-{
-        id: 54,
-        name: "Koppar",
-        category: "Beds",
-        img: "/wd-furniture-beds-prod-12-1.jpg",
-        price: 2200,
-        rating: null,
-        colors: []
-    },
-{
-    id: 131,
-    name: "Swing",
-    category: "Decor",
-    img: "/wd-furniture-decor-prod-14-1.jpg",
-    price: 520,
-    rating: null,
-    colors: []
-  },
-{
-        id: 113,
-        name: "Lacing Sheep",
-        category: "Toys",
-        img: "/wd-furniture-toys-prod-16-1.jpg",
-        price: 24,
-        rating: null,
-        colors: []
-    },
-{
-    id: 153,
-    name: "Result",
-    category: "Chairs",
-    img: "https://woodmart.xtemos.com/furniture2/wp-content/uploads/sites/11/2023/04/wd-furniture-chair-prod-11-1-400x457.jpg",
-    price: 310.0,
-    rating: null,
-    colors: []
-  },
-{
-    id: 76,
-    name: "Alessa",
-    category: "Storage",
-    img: "/wd-furniture-storage-prod-5-1.jpg",
-    price: 1100,
-    rating: null,
-    colors: []
-  },
-{
-        id: 122,
-        name: "Tie Up Shoe",
-        category: "Toys",
-        img: "/wd-furniture-toys-prod-7-1.jpg",
-        price: 18,
-        rating: null,
-        colors: []
-    },
-{
-    id: 43,
-    name: "Bluemine",
-    category: "Armchairs",
-    img: "/wd-furniture-armchairs-prod-8-1.jpg",
-    price: 1620.0,
-    rating: 0,
-    colors: [],
   },
 {
     id: 10,
