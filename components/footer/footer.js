@@ -5,7 +5,7 @@ const footer = () => {
     <div className='flex flex-col bg-[#000] text-white p-[50px_5px_25px_5px] lg:p-[50px_15px]'>
       <span className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[3fr_1.5fr] lg:mx-[60px] max-[768px]:gap-[80px] max-[768px]:justify-items-start max-[1024px]:justify-items-end max-[1024px]:p-[15px]'>
         <span className='flex flex-col gap-10 w-full items-start'>
-       <img className='w-[260px]' src="./10046.svg" alt="" />
+       <img className='w-[260px]' src="/10046.svg" alt="" />
        <span className='min-[768px]:flex max-[768px]:gap-10 grid grid-cols-2 min-[1024px]:gap-20 max-[1024px]:gap-8  col text-[#FFFFFF99]'>
 
             <ul className='max-[768px]:col-span-2'>

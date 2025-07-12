@@ -4,6 +4,7 @@ import Footer from "./footer";
 import "@/styles/globals.css";
 import { Work_Sans , Urbanist } from 'next/font/google';
 import 'remixicon/fonts/remixicon.css'
+ import { ToastContainer, toast } from 'react-toastify';
 
 export const workSans = Work_Sans({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }) {
         <Nav />
         
       <Component {...pageProps} />
+       <ToastContainer />
       <Footer />
       </ProductContext>
     </main>

@@ -9,7 +9,7 @@ function m_nav() {
     const handleClick = (product) => {
       if(product){
         setProduct(product);
-        router.push("/product_category");
+        router.push("/product");
         setNav(!nav)
       }
     };
@@ -28,7 +28,7 @@ function m_nav() {
           <li>
             <img
               className="w-[180px] lg:w-[210px] h-[40px] max-w-[210px]"
-              src="./10007.svg"
+              src="/10007.svg"
               decoding="async"
             />
           </li>
@@ -91,7 +91,7 @@ function m_nav() {
             {!menu && (
               <ul className="z">
                <li className="flex p-[1.2rem] gap-4 px-[1.2rem] border-b-[1px] border-[#5c5c5c36] font-medium" onClick={()=>{handleClick("Chairs"); }}>
-                 <img src="./Chair.svg" alt="" />
+                 <img src="/Chair.svg" alt="" />
                 
                   <h1>Chairs</h1>
                 </li>

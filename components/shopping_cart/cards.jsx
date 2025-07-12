@@ -1,109 +1,11 @@
+import { Product } from '@/context/ProductContext';
+import data from '@/itemz';
 import { urbanist, workSans } from '@/pages/_app';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 const cards = () => {
-    const items = [
-    {
-      id: 1,
-      name: "Chairs",
-      category: "Chairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-chair-prod-13-1-350x400.jpg",
-      price: 120.0,
-      rating: 5,
-      colors: [
-        { name: "American Silver", code: "rgb(205,206,208)" },
-        { name: "Jet", code: "rgb(54,54,54)" },
-        { name: "Venetian Red", code: "rgb(204,21,18)" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Sofas",
-      category: "Sofas",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-sofa-prod-8-1-350x400.jpg",
-      price: 510.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 3,
-      name: "Tables",
-      category: "Tables",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-tables-prod-16-1-350x400.jpg",
-      price: 440.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 4,
-      name: "Armchairs",
-      category: "Armchairs",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/04/wd-furniture-armchair-prod-6-1-350x400.jpg",
-      price: 340.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 5,
-      name: "Accessories",
-      category: "Accessories",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/05/wd-furniture-storage-prod-3-1-350x400.jpg",
-      price: 215.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 6,
-      name: "Toys",
-      category: "Toys",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-toys-prod-2-1-350x400.jpg",
-      price: 80.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 7,
-      name: "Textiles",
-      category: "Textiles",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-textile-prod-4-1-350x400.jpg",
-      price: 99.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 8,
-      name: "Lighting",
-      category: "Lighting",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-lighting-prod-5-1-350x400.jpg",
-      price: 199.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 9,
-      name: "Decor",
-      category: "Decor",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-decor-prod-9-1-350x400.jpg",
-      price: 110.0,
-      rating: null,
-      colors: [],
-    },
-    {
-      id: 10,
-      name: "Beds",
-      category: "Beds",
-      img: "https://dsrsrc.site/wp-content/uploads/2023/06/wd-furniture-beds-prod-10-1-350x400.jpg",
-      price: 899.0,
-      rating: null,
-      colors: [],
-    },
-  ];
   const[change ,setChange] =useState(0);
-  useEffect(()=>{
-    console.log(change);
-    
-  },[change]);
-
+  const{compare,setCompare,wishlist,setWishlist} =useContext(Product)
    const [slideWidth, setSlideWidth] = useState(282);
    
   useEffect(() => {
@@ -120,11 +22,6 @@ const cards = () => {
 
     return () => window.removeEventListener('resize', updateSlideWidth);
   }, []);
-  useEffect(() => {
-    
-   console.log(slideWidth);
-   
-  }, [slideWidth]);
   return (
     <div className={`${workSans.className} pt-[90px] relative translate-x-[${change}px] group/main min-[1200px]:p-[50px_72px] p-[20px_15px] overflow-hidden`}>
 
@@ -133,12 +30,12 @@ const cards = () => {
        <span className="arrows h-[20px] font-light inset-0 text-[#76767669] w-full absolute top-[50%] lg:text-4xl text-3xl flex justify-between items-center">
               <i className={`ri-arrow-left-s-line group-hover/main:translate-x-5 group-hover/main:opacity-100 lg:opacity-0  lg:-translate-x-full transition-all duration-300 ease-in-out max-[1224px]:-translate-x-2 ${change === 0 ? "text-[76767669]": "text-[#767676]"}`} onClick={()=>{change > 0 ? setChange(change-1) : console.log(change,"no previous item");
               }}></i>
-              <i className={`ri-arrow-right-s-line group-hover/main:-translate-x-5  group-hover/main:opacity-100 lg:opacity-0 lg:translate-x-full transition-all duration-300 ease-in-out max-[1224px]:translate-x-2 ${change+5 === items.length ? "text-[76767669]": "text-[#767676]"}`} onClick={()=>{change + 5 < items.length ? setChange(change+1) : console.log(change,"no previous item")}}></i>
+              <i className={`ri-arrow-right-s-line group-hover/main:-translate-x-5  group-hover/main:opacity-100 lg:opacity-0 lg:translate-x-full transition-all duration-300 ease-in-out max-[1224px]:translate-x-2 ${change+5 === data.slice(0,10).length ? "text-[76767669]": "text-[#767676]"}`} onClick={()=>{change + 5 < data.slice(0,10).length ? setChange(change+1) : console.log(change,"no previous item")}}></i>
             </span>
       <div className='overflow-hidden'>
       <div className={`items-container flex lg:w-max w-full lg:gap-6 md:gap-4 gap-2  transition-transform duration-300 ease-in-out `} style={{transform : `translateX(${change >= 0 ? -change*slideWidth : change*slideWidth }px)`}}>
         
-        {items.map((item,index) => (
+        {data.slice(0,10).map((item,index) => (
           <div
             className="relative item z-20 p-2 bg-white flex-shrink-0 rounded-xl lg:max-h-[400px] lg:max-w-[258px] min-[1200px]:w-[calc((100vw_-_240px)_/_5)] min-[1024px]:w-[calc((100vw_-126px)_/_5)] max-[1024px]:w-[calc((100vw_-_85px)_/_4)] max-[768px]:w-[calc((100vw_-_48px)_/_2)] group md:overflow-hidden"
             key={item.id}
@@ -150,10 +47,10 @@ const cards = () => {
                         Add to wishlist
                       </small>
 					    <span
-                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] "
-                      > <i className="ri-heart-line text-[#767676] text-[25px] font-light"></i></span>
+                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] " onClick={()=>{wishlist.some((i)=>i.name === item.name) && setWishlist([...wishlist,{...item}])}}
+                      > <i className={` ${!wishlist.some((i)=>i.name === item.name) ? "ri-heart-line" : "ri-check-line"} text-[#767676] text-[25px] font-light`}></i></span>
 
-                      <i className="ri-arrow-right-s-fill absolute top-[-2px] text-[18px] text-black right-[30px] group-hover/color:opacity-100 transition-opacity duration-200 opacity-0"></i>
+                      <i className="ri-arrow-right-s-fill absolute top-[-2px] text-[18px] text-black right-[33px] group-hover/color:opacity-100 transition-opacity duration-200 opacity-0"></i>
                      
                        </span>
              
@@ -162,7 +59,7 @@ const cards = () => {
               className="mt-3"
               width={258}
               height={259}
-              src={items[0].img}
+              src={item.img}
               alt=""
             />
             <span className="arrows h-[20px] inset-0 text-[#767676] w-full absolute top-[30%] text-[25px] lg:flex hidden justify-between items-center">
@@ -173,7 +70,7 @@ const cards = () => {
               <span className="flex justify-between items-center font-bold">
                 <h1 className={`max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] text-[#333333] ${urbanist.className}`}>{item.name}{index}</h1>
                 <span className='font-medium'>
-                  {items[0].rating}
+                  {item.rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>
@@ -210,7 +107,7 @@ const cards = () => {
                   <i className="ri-shopping-cart-2-line text-[24px] font-light block translate-y-1 group-hover/cart:-translate-y-7 transition-all duration-200 ease-in-out"></i>
                 </button>
                 <span className=" lg:flex hidden gap-[12px]">
-                  <i className="ri-shuffle-line "></i>
+                  <i className={` ${!compare.some((i)=>i.name === item.name) ? "ri-shuffle-line" : "ri-check-line"} `} onClick={(e)=>{e.stopPropagation(); e.preventDefault(); !compare.some((i)=>i.name === item.name) && setCompare([...compare,{...item}])}}></i>
                   <i className="ri-search-line text-[rgb(119, 119, 119)]"></i>
                 </span>
               </span>

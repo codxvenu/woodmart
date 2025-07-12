@@ -7,19 +7,19 @@ const l_nav = () => {
   const handleClick = (product) => {
     if(product){
       setProduct(product);
-      router.push("/product_category");
+      router.push(`/product_category/${product}`);
     }
   };
   return (
     <div className='lg:flex hidden px-20 py-2 justify-between items-center bg-[rgba(251,250,247,1)]'>
         <ul className="flex text-[14px] l gap-6 cursor-pointer">
                 <li className="flex gap-[7px]  font-medium" onClick={()=>{handleClick("Chairs"); }}>
-                 <img src="./Chair.svg" alt="" />
+                 <img src="/Chair.svg" alt="" />
                 
                   <h1>Chairs</h1>
                 </li>
                 <li className="flex gap-[7px]  font-medium" onClick={()=>{handleClick("Tables")}}>
-                 <img src="table.svg" alt="" />
+                 <img src="/table.svg" alt="" />
                   <h1>Tables</h1>
                 </li>
                 <li className="flex gap-[7px]  font-medium" onClick={()=>{handleClick("Sofas")}}>

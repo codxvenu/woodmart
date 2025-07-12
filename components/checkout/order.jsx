@@ -7,8 +7,6 @@ const order = () => {
     const handleQuantity = (idx, quantity)=>{
        const updatedquantity = cart.map(item=>{
         if(item.name === idx.name){
-          
-
             return {...item, quantity: quantity}
         }else{
           return item

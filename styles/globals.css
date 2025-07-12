@@ -258,7 +258,7 @@ margin-block: 10px;
   text-align: end;
 }
 .cart table th:nth-child(2){
-  width: 10px;
+  width: 100px;
 }
 .cart table tr{
   border-bottom: 1px solid rgba(0,0,0,0.15);
@@ -271,5 +271,163 @@ margin-block: 10px;
 }
 .cart table th:first-of-type{
   padding: 15px 10px 15px 0;
-  width: 0;
+  }
+.fadeUp{
+  animation: fadeup .7s ease;
+}
+.compare td td, .compare th{
+  padding: 15px;
+  border-inline-end: 1px solid rgba(0,0,0,0.105);
+  border-block-end: 1px solid rgba(0,0,0,0.105);
+  font-size: 15px; 
+  width: 365px;
+  min-width: 225px;
+}
+.compare{
+  max-width: calc(100vw - 150px);
+  overflow-x: scroll;
+  scrollbar-width: none;
+  display: block;
+}
+.compare th{
+  font-weight: 600;
+  font-family: 'Urbanist', 'Urbanist Fallback';
+  vertical-align: top;
+  max-width: 259px;
+}
+.compare tr{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-items: flex-start;
+  width: min-content;
+  max-height: 569px;
+}
+.compare td td{
+  max-width: 360px;
+}
+ul.myacc{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+ul.myacc li{
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 15px;
+  text-align: start;
+  border-radius: 10px;
+  line-height: 20px;
+  width: 90%;
+  font-weight: 500;
+}
+ul.myacc li:hover{
+  background: rgba(0,0,0,0.02);
+}
+ul.myacc li.active{
+  background: rgba(0,0,0,0.06);
+  color: black;
+}
+ul.dash{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+ul.dash li{
+  padding: 20px;
+  font-size: 15px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.18);
+  display: grid;
+  border-radius: 15px;
+  color: #555;
+  font-weight: 500;
+  transition: all ease .25s;
+}
+ul.dash i{
+  font-size: 50px;
+  color: #bbb;
+  font-weight: 500;
+}
+ul.dash li:hover{
+  background: rgba(0, 0,0, 0.02);
+}
+ul.dash li:hover i{
+  color: #f59a57;
+}
+.order th {
+  text-transform: uppercase;
+  color: #242424;
+  font-family: 'Urbanist', 'Urbanist Fallback';
+  padding: 15px 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.105);
+  text-align: start;
+}
+.order td{
+  color: #777777;
+  font-size: 15px;
+  padding: 15px 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.105);
+  text-align: start;
+}
+.order th:last-of-type,.order td:last-of-type{
+  text-align: end;
+}
+.order td:first-of-type,.order th:first-of-type{
+  padding-left: 0px;
+  color: #242424;
+  font-weight: 600;
+  font-family: 'Urbanist', 'Urbanist Fallback';
+}
+.order td span{
+  color: #f59a57;
+  font-weight: 600;
+  font-family: 'Urbanist', 'Urbanist Fallback';
+}
+.order td button{
+  font-size: 12px;
+  padding: 6px 16px;
+  font-weight: 600;
+  font-family: 'Urbanist', 'Urbanist Fallback';
+}
+.vorder tr{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.105);
+  color: #777777;
+  font-size: 15px;
+  padding: 15px 10px;
+}
+.vorder th{
+  font-family: 'Urbanist', 'Urbanist Fallback';
+  color: #242424;
+  
+}
+.vorder tr:first-of-type{
+  font-size: 16px;
+  font-family: 'Urbanist', 'Urbanist Fallback';
+  text-transform: uppercase;
+}
+@media (max-width : 768px) {
+  .compare th{
+    display: none;
+  }
+  .compare{
+    max-width: 100%;
+  }
+  .compare td{
+    min-width: calc(100vw - 40px) !important;
+  }
+  .compare .tds td{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+@keyframes fadeup {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }

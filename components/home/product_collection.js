@@ -18,13 +18,13 @@ const product_collection = () => {
         <div className="child flex flex-col gap-4">
           <span>
             <img
-              src="./10029.jpg"
+              src="/10029.jpg"
               alt=""
             />
           </span>
           <span>
             <img
-              src="./10089.jpg"
+              src="/10089.jpg"
               alt=""
             />
           </span>
@@ -32,7 +32,7 @@ const product_collection = () => {
         <div className="child flex flex-col gap-4">
           <span>
             <img
-              src="./10073.jpg"
+              src="/10073.jpg"
               alt=""
             />
           </span>
@@ -46,10 +46,10 @@ const product_collection = () => {
         <div className="child flex flex-col gap-4">
          
           <span>
-           <video src="./wd-furniture-hotspot-video-opt.mp4" autoPlay loop muted/>
+           <video src="/wd-furniture-hotspot-video-opt.mp4" autoPlay loop muted/>
           </span>
           <span>
-            <img src="./10037.jpg" alt="" />
+            <img src="/10037.jpg" alt="" />
           </span>
         </div>
         <div className="child flex flex-col gap-4">
@@ -58,15 +58,15 @@ const product_collection = () => {
            
           </span>
           <span>
-            <img src="./10088.jpg" alt="" />
+            <img src="/10088.jpg" alt="" />
           </span>
         </div>
         <div className="child max-[1024px]:hidden flex flex-col gap-4 ">
           <span>
-            <img src="./10039.jpg" alt="" />
+            <img src="/10039.jpg" alt="" />
           </span>
           <span>
-            <img src="./10091.jpg" alt="" />
+            <img src="/10091.jpg" alt="" />
           </span>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { urbanist, workSans } from "@/pages/_app";
 import React, { useState ,useEffect, useContext } from "react";
 import Side_cart from "../shopping_cart/side_cart";
 import { useRouter } from "next/router";
+import Link from "next/link";
 const content = () => {
     const {items ,cart, setCart} = useContext(Product)
     const [itemCount , setItemCount] = useState(1);
@@ -59,7 +60,7 @@ const handleCart= ()=>{
            {items.name}
           </h1>
           <a className="w-[100px] p-[10px] shadow-[0_0_2px_rgba(0,0,0,0.12)]">
-            <img className=" max-w-[80px]" src="./kettal.jpg.webp" alt="" />
+            <img className=" max-w-[80px]" src="/kettal.jpg.webp" alt="" />
           </a>
         </span>
         <h2 className="font-bold">
@@ -77,7 +78,7 @@ const handleCart= ()=>{
         </span>
         <span className="flex gap-2 p-[20px] bg-[rgba(16,16,16,0.03)]">
           {" "}
-          <img src="./promotions.svg" alt="" />{" "}
+          <img src="/promotions.svg" alt="" />{" "}
           <span className="flex flex-col gap-2 text-[#777777]">
             <h1 className={`${urbanist.className} text-[18px] font-bold text-[#333333]`}>
               Soft Edge collection
@@ -93,7 +94,7 @@ const handleCart= ()=>{
           collection of the same name.
         </p>
         <small className="lg:text-[34px] text-[22px] text-[#F59a57] font-medium">${items.price}.00</small>
-        <span className="lg:flex grid grid-cols-[1fr_2fr] gap-4 w-full">
+        <span className="sm:flex grid grid-cols-[1fr_3fr] gap-4 w-full">
           <span className="flex items-center lg:w-[20%] text-[#777777]">
             <button className="px-2 py-2 border-[1px] border-[rgba(0,0,0,0.1)] rounded-l-4xl cursor-pointer hover:bg-[rgb(245,154,87)] hover:text-white transition-colors ease-in-out duration-75" onClick={()=>{itemCount > 0? setItemCount(itemCount -1 ) : alert("cant order less than 1 product") }}>
               -
@@ -105,12 +106,14 @@ const handleCart= ()=>{
               +
             </button>
           </span>
-          <button className="bg-[rgb(245,154,87)] lg:w-[35%] rounded-[20px] text-white cursor-pointer" onClick={()=>{setSide(true); handleCart()}}>
+          <button className="bg-[rgb(245,154,87)] sm:w-[inherit] rounded-[20px] text-white cursor-pointer" onClick={()=>{setSide(true); handleCart()}}>
             Add to cart
           </button>
-          <button className="bg-black text-white lg:w-[35%] rounded-[20px] col-span-2 py-2 cursor-pointer" onClick={()=>{router.push("./checkout")}}>
+          <Link href="/checkout" className="lg:w-[inherit] w-full col-span-2">
+          <button className="bg-black text-white w-[inherit] rounded-[20px]  py-2 cursor-pointer" >
             Buy now
           </button>
+          </Link>
         </span>
         <span className="lg:flex grid grid-cols-2 lg:gap-4 gap-2 text-[#333] mt-6 font-medium cursor-pointer">
         <h2 className="col-span-2"><i className="ri-shuffle-line text-[16px] mr-2 "></i>Add to compare</h2>

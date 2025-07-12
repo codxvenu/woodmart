@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { urbanist,workSans } from '@/pages/_app'
 import data from '@/itemz'
+import { Product } from '@/context/ProductContext'
 const furniture_collec = () => {
-
+const{wishlist,setWishlist,compare,setCompare}=useContext(Product)
   return (
        <div className={`${urbanist.className} lg:p-[55px_72px] p-[30px_5px] min-[768px]:grid lg:grid-cols-[1.6fr_1fr] grid-cols-2 flex flex-col max-[1024px]:gap-2 gap-8 overflow-hidden`}>
         <span className=''>
@@ -31,8 +32,8 @@ const furniture_collec = () => {
                         Add to wishlist
                       </small>
 					    <span
-                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] "
-                      > <i className="ri-heart-line text-[#767676] text-[25px] font-light"></i></span>
+                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] " onClick={()=>{wishlist.some((i)=>i.name === item.name) && setWishlist([...wishlist,{...item}])}}
+                      > <i className={` ${!wishlist.some((i)=>i.name === item.name) ? "ri-heart-line" : "ri-check-line"} text-[#767676] text-[25px] font-light`}></i></span>
 
                       <i className="ri-arrow-right-s-fill absolute top-[-2px] text-[18px] text-black right-[30px] group-hover/color:opacity-100 transition-opacity duration-200 opacity-0"></i>
                      
@@ -91,7 +92,7 @@ const furniture_collec = () => {
                   <i className="ri-shopping-cart-2-line text-[24px] font-light block translate-y-1 group-hover/cart:-translate-y-7 transition-all duration-200 ease-in-out"></i>
                 </button>
                 <span className=" lg:flex hidden gap-[12px]">
-                  <i className="ri-shuffle-line "></i>
+                  <i className={` ${!compare.some((i)=>i.name === item.name) ? "ri-shuffle-line" : "ri-check-line"} `} onClick={(e)=>{e.stopPropagation(); e.preventDefault(); !compare.some((i)=>i.name === item.name) && setCompare([...compare,{...item}])}}></i>
                   <i className="ri-search-line text-[rgb(119, 119, 119)]"></i>
                 </span>
               </span>
@@ -101,7 +102,7 @@ const furniture_collec = () => {
           </div>
         </span>
         <span className="w-full h-full">
-            <img className='w-[100%] h-[90%] rounded-[12px]'   src="./10105.jpg" alt="" />
+            <img className='w-[100%] h-[90%] rounded-[12px]'   src="/10105.jpg" alt="" />
         </span>
 
     </div>

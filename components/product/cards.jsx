@@ -2,10 +2,12 @@ import { urbanist, workSans } from '@/pages/_app';
 import React, { useEffect, useState ,useContext } from 'react'
 import { Product } from "@/context/ProductContext";
 import data from '@/itemz';
+import Side_cart from '../shopping_cart/side_cart';
+import Link from 'next/link';
 const cards = () => {
   const[change ,setChange] =useState(0);
-  const{items} = useContext(Product);
-
+  const{items , wishlist,setWishlist,compare,setCompare,cart,setCart} = useContext(Product);
+  const[side,setSide] = useState(false);
   useEffect(()=>{
     console.log(items,"data",data[0]);
     
@@ -33,6 +35,7 @@ const cards = () => {
    
   }, [slideWidth]);
   return (
+    <>
     <div className={`${workSans.className} pt-[90px] relative translate-x-[${change}px] group/main min-[1200px]:p-[50px_72px] p-[20px_15px] overflow-hidden`}>
 
       <h1 className={`${urbanist.className} lg:text-[22px] text-[20px] font-bold text-[#242424 mb-[20px]`}>Related Products</h1>
@@ -46,8 +49,11 @@ const cards = () => {
       <div className={`items-container flex lg:w-max w-full lg:gap-6 md:gap-4 gap-2  transition-transform duration-300 ease-in-out `} style={{transform : `translateX(${change >= 0 ? -change*slideWidth : change*slideWidth }px)`}}>
         
         {data.filter((idx)=>(idx.category === items.category)).map((item,index) => (
-          <div
-            className="relative item z-20 p-2 bg-white flex-shrink-0 rounded-2xl lg:max-h-[400px] lg:max-w-[258px] min-[1200px]:w-[calc((100vw_-_240px)_/_5)] min-[1024px]:w-[calc((100vw_-126px)_/_5)] max-[1024px]:w-[calc((100vw_-_85px)_/_4)] max-[768px]:w-[calc((100vw_-_48px)_/_2)] group md:overflow-hidden"
+        <Link href={`/product/${item.id}`}>
+
+     
+        <div
+            className="relative item z-20 p-2 bg-white flex-shrink-0 rounded-2xl lg:max-h-[400px] lg:max-w-[258px] min-[1200px]:w-[calc((100vw_-_240px)_/_5)] min-[1024px]:w-[calc((100vw_-126px)_/_5)] max-[1024px]:w-[calc((100vw_-_85px)_/_4)] max-[768px]:w-[calc((100vw_-_48px)_/_2)] group md:overflow-hidden cursor-pointer"
             key={item.id}
           >
              <span className="absolute w-[95%] tag mb-3 flex justify-between items-center p-[4px_15px] font-bold uppercase">
@@ -57,8 +63,8 @@ const cards = () => {
                         Add to wishlist
                       </small>
 					    <span
-                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] "
-                      > <i className="ri-heart-line text-[#767676] text-[25px] font-light"></i></span>
+                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] " onClick={()=>{wishlist.some((i)=>i.name === item.name) && setWishlist([...wishlist,{...item}])}}
+                      > <i className={` ${!wishlist.some((i)=>i.name === item.name) ? "ri-heart-line" : "ri-check-line"} text-[#767676] text-[25px] font-light`}></i></span>
 
                       <i className="ri-arrow-right-s-fill absolute top-[-2px] text-[18px] text-black right-[30px] group-hover/color:opacity-100 transition-opacity duration-200 opacity-0"></i>
                      
@@ -78,7 +84,7 @@ const cards = () => {
             </span>
             <div className="data p-2 flex flex-col gap-1 transition-transform duration-300 ease-in-out lg:group-hover:-translate-y-10">
               <span className="flex justify-between items-center font-bold">
-                <h1 className={`max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] text-[#333333] ${urbanist.className}`}>{item.name}{index}</h1>
+                <h1 className={`max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] text-[#333333] ${urbanist.className}`}>{item.name}</h1>
                 <span className='font-medium'>
                   {data[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
@@ -109,7 +115,12 @@ const cards = () => {
                 </span>
               </span>
               <span className="z-10 cart lg:grid grid-cols-[1fr_.4fr] gap-4 items-center transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-[20px] lg:opacity-0">
-                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart">
+                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart" onClick={(e)=>{e.stopPropagation(); e.preventDefault(); setSide(true); !cart.some((idx)=>idx.id === item.id) ? setCart([...cart,{...item,quantity:1}]) : 
+                setCart(cart.map((idx)=>{
+                  if(idx.id === item.id){  return {...item,quantity: idx.quantity + 1}
+                }else{
+                  return idx
+                  } }))}}>
                   {" "}
                   <h1 className="text-[14px] group-hover/cart:-translate-y-6 transition-all duration-200 ease-in-out">
                     Add to cart
@@ -117,16 +128,23 @@ const cards = () => {
                   <i className="ri-shopping-cart-2-line text-[24px] font-light block translate-y-1 group-hover/cart:-translate-y-7 transition-all duration-200 ease-in-out"></i>
                 </button>
                 <span className=" lg:flex hidden gap-[12px]">
-                  <i className="ri-shuffle-line "></i>
+                  <i className={` ${!compare.some((i)=>i.name === item.name) ? "ri-shuffle-line" : "ri-check-line"} `} onClick={(e)=>{e.stopPropagation(); e.preventDefault(); !compare.some((i)=>i.name === item.name) && setCompare([...compare,{...item}])}}></i>
                   <i className="ri-search-line text-[rgb(119, 119, 119)]"></i>
                 </span>
               </span>
             </div>
           </div>
+             </Link>
         ))}
       </div>
+      
       </div>
     </div>
+    {
+  side &&
+    <Side_cart setSide={setSide} />
+}
+    </>
   )
 }
 

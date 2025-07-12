@@ -51,7 +51,7 @@ function s_nav() {
         </li>
         <li className=" bg-[#80808030] h-[23px] w-[3px]"></li>
         <li className="flex gap-1">
-          <img width="65" height="22" src="./10006.png"/>
+          <img width="65" height="22" src="/10006.png"/>
         </li>
         <li>Contact with an expert</li>
       </ul>

@@ -32,15 +32,15 @@ const about_brand = () => {
           <p className='text-[#777777]'>The company reinterprets tradition by calling upon international designers to work with them and developing new technologies and materials to guarantee innovative and surprising results. Passion is the engine that drives the brand.</p>
          <ul className='grid grid-cols-4 items-center justify-center bicons'>
             <li><span>
-<img src="./wd-slide-icon-chair-1.svg" alt="" />
+<img src="/wd-slide-icon-chair-1.svg" alt="" />
             </span>
                 <h1>Chairs</h1>
          </li>
-            <li><span><img src="./wd-furniture-tables-primary.svg" alt="" /></span><h1>Chairs</h1>
+            <li><span><img src="/wd-furniture-tables-primary.svg" alt="" /></span><h1>Chairs</h1>
          </li>
-            <li><span><img src="./wd-furniture-armchairs-primary.svg" alt="" /></span><h1>Chairs</h1>
+            <li><span><img src="/wd-furniture-armchairs-primary.svg" alt="" /></span><h1>Chairs</h1>
          </li>
-            <li><span><img src="./wd-furniture-storage-primary.svg" alt="" /></span><h1>Chairs</h1>
+            <li><span><img src="/wd-furniture-storage-primary.svg" alt="" /></span><h1>Chairs</h1>
          </li>
          </ul>
           <p className='text-[#777777]'>Nordic design inspires HAY's taste for clean lines, simple geometric shapes, and quality materials like wood, metal, and textiles. Anyway, you still use Lorem Ipsum and rightly so, as it will always have a place in the web workers toolbox.

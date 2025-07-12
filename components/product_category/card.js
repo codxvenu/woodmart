@@ -3,11 +3,13 @@ import { urbanist, workSans } from "@/pages/_app";
 import {  useRouter } from "next/router";
 import { Product } from "@/context/ProductContext";
 import data  from "@/itemz";
+import Link from "next/link";
+import Side_cart from "../shopping_cart/side_cart";
 const card = ({ classNamees ,start, end, page }) => {
 
-  const{items, product ,setItems}=useContext(Product)
+  const{product ,cart,setCart ,setWishlist,wishlist,compare,setCompare }=useContext(Product)
 
-  
+  const[side,setSide] = useState(false);
   const router = useRouter();
   const[small,setsmall] = useState(false);
 useEffect(() => {
@@ -25,18 +27,21 @@ useEffect(() => {
 
     handleResize(); // run once on mount
     window.addEventListener("resize", handleResize); // update on resize
-
+    console.log(product);
+    
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 return (
+  <>
     <div className={`${workSans.className} md:pt-[30px] pt-[20px]`}>
     {small && classNamees === 1 ? 
 
       <div
         className={`items-container grid grid-cols-${classNamees} md:gap-4 gap-4 `}
       >
-        {data.slice(start,end+1).filter((idx)=>idx.category === product || product === "shop" ).map((item,index) => (
-          <div key={index} className="relative cursor-pointer flex md:flex-row flex-col items-center flex-[0_0_300px] md:p-[30px] p-[10px] bg-white rounded-[10px] group" onClick={()=>{setItems(item);  router.push("/product");}}>
+        {data.filter((idx)=>idx.category === product || product === "shop" ).slice(start,end+1).map((item,index) => (
+         <Link href="/product">
+         <div key={index} className="relative cursor-pointer flex md:flex-row flex-col items-center flex-[0_0_300px] md:p-[30px] p-[10px] bg-white rounded-[10px] group" >
             <span className="relative lg:w-[300px] flex justify-center">
               <span className="overflow-hidden relative flex justify-center">
                 <img className="md:max-w-[300px] max-w-[80%]" src={item.img} alt="" />
@@ -104,8 +109,9 @@ return (
                 </button>
               </span>
               <span className="z-10 cart lg:grid grid-cols-[1fr_.4fr] hidden gap-4 items-center transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-[20px] lg:opacity-0">
-                <span className="flex flex-col-reverse gap-[16px] text-[#333] py-2 bg-white shadow w-fit absolute top-[22px] left-[28%] rounded-[6px] transition-transform duration-300 ease-in-out translate-x-10 group-hover:translate-x-0">
-                  <i className="ri-heart-line hover:text-[#767676] px-3 relative group/wish">
+                <span className="flex flex-col-reverse gap-[16px] text-[#333] py-2 bg-white shadow w-fit absolute top-[22px] left-[28%] rounded-[6px] transition-transform duration-300 ease-in-out translate-x-10 group-hover:translate-x-0" onClick={()=>{wishlist.some((i)=>i.name === item.name) && setWishlist([...wishlist,{...item}])}}>
+                  <i className={` ${!wishlist.some((i)=>i.name === item.name) ? "ri-heart-line" : "ri-check-line"} hover:text-[#767676] px-3 relative group/wish`}>
+                    
                     <span className="group-hover/wish:opacity-100 transition-opacity duration-200 opacity-0 -translate-x-1/2 absolute flex left-[-100%] top-0">
                       <small
                         className={`${workSans.className}  p-[8px] text-[11px] text-white bg-black rounded-[4px] whitespace-nowrap  `}
@@ -139,15 +145,18 @@ return (
               </span>
             </div>
           </div>
+          </Link>
         ))}
       </div>
     :
         <div className={`items-container grid  md:grid-cols-${classNamees} grid-cols-2  lg:gap-6 md:gap-4 gap-2 `}>
-        {data.slice(start,end+1).filter((idx)=>idx.category === product || product === "shop" ).map((item,index) => (
-          <div
+        {data.filter((idx)=>idx.category === product || product === "shop" ).slice(start,end+1).map((item,index) => (
+         <Link href={`/product/${item.id}`}>
+
+         <div
             className={classNamees === 4? "relative item z-20 p-2 bg-white rounded-2xl transition-transform duration-300 ease-in-out group lg:hover:-translate-y-4 md:overflow-hidden  h-[380px] cursor-pointer" : "relative item z-20 p-2 bg-white rounded-2xl transition-transform duration-300 ease-in-out group lg:hover:-translate-y-4 cursor-pointer  md:overflow-hidden lg:max-h-[476px]"}
             key={index}
-          onClick={()=>{setItems(item);  router.push("/product");}}>
+          >
              <span className="absolute w-[95%] tag mb-3 flex justify-between items-center p-[4px_15px] font-bold uppercase">
               <h1 className="text-[12px]">Sold out</h1>
 			  <span className="flex flex-col justify-center items-center gap-0.5 group/color w-[22px]">
@@ -155,8 +164,8 @@ return (
                         Add to wishlist
                       </small>
 					    <span
-                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] "
-                      > <i className="ri-heart-line text-[#767676] text-[25px] font-light"></i></span>
+                        className="block group/color w-[15px] h-[15px] rounded-[50%] cursor-pointer relative top-[-10px] z-[1000]" onClick={(e)=>{e.stopPropagation(); e.preventDefault(); !wishlist.some((i)=>i.name === item.name) && setWishlist([...wishlist,{...item}])}}
+                      > <i className={` ${!wishlist.some((i)=>i.name === item.name) ? "ri-heart-line" : "ri-check-line"} text-[#767676] text-[25px] font-light`}></i></span>
 
                       <i className="ri-arrow-right-s-fill absolute top-[-5px] text-[18px] text-black right-[33px] group-hover/color:opacity-100 transition-opacity duration-200 opacity-0"></i>
                      
@@ -215,26 +224,36 @@ return (
                 </span>
               </span>
               <span className="z-10 cart lg:grid grid-cols-[1fr_.4fr] gap-4 items-center transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-[20px] lg:opacity-0">
-                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart">
-                  {" "}
+                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart" onClick={(e)=>{e.stopPropagation(); e.preventDefault(); setSide(true); !cart.some((idx)=>idx.id === item.id) ? setCart([...cart,{...item,quantity:1}]) : 
+                setCart(cart.map((idx)=>{
+                  if(idx.id === item.id){  return {...item,quantity: idx.quantity + 1}
+                }else{
+                  return idx
+                  } }))}}>
                   <h1 className="text-[14px] group-hover/cart:-translate-y-6 transition-all duration-200 ease-in-out">
                     Add to cart
                   </h1>
                   <i className="ri-shopping-cart-2-line text-[24px] font-light block translate-y-1 group-hover/cart:-translate-y-7 transition-all duration-200 ease-in-out"></i>
                 </button>
                 <span className=" lg:flex hidden gap-[12px]">
-                  <i className="ri-shuffle-line "></i>
+                  <i className={` ${!compare.some((i)=>i.name === item.name) ? "ri-shuffle-line" : "ri-check-line"} `} onClick={(e)=>{e.stopPropagation(); e.preventDefault(); !compare.some((i)=>i.name === item.name) && setCompare([...compare,{...item}])}}></i>
                   <i className="ri-search-line text-[rgb(119, 119, 119)]"></i>
                 </span>
               </span>
             </div>
           </div>
+         </Link>
         ))}
       </div>
     }
    
     
     </div>
+    {
+  side &&
+    <Side_cart setSide={setSide} />
+}
+  </>
   );
 };
 

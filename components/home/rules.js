@@ -6,7 +6,7 @@ const rules = () => {
       <span className='text-[26px]  lg:text-[32px] font-bold'>Rules for choosing furniture</span>
       <div className="d-container grid grid-cols-[1fr_1.2fr] gap-6 mt-[25px]">
         <span>
-            <img className='w-full h-full' src="./10109.png" alt="" />
+            <img className='w-full h-full' src="/10109.png" alt="" />
             </span>
             <span className='flex flex-col gap-6'><h1 className='text-[22px]  lg:text-[18px] font-bold'>Whether living on your own or with a family, your living room is an important space.</h1>
           <p className={`text-[15px] text-[#767676] ${workSans.className}`}>This room is where your family spends time together, and it is the room most of your guests will spend the majority of their time in. Choosing furniture that creates a pleasant, welcoming appearance while holding up against the wear and tear of everyday life is the key in getting this space to work for your needs.</p>
