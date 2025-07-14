@@ -12,9 +12,9 @@ const ProductContext = ({children}) => {
    useEffect(()=>{
     setProduct(localStorage.getItem("category") || "");
     setItems(localStorage.getItem("items") !== "undefined" ? JSON.parse(localStorage.getItem("items")) : [])
-    setCart(JSON.parse(localStorage.getItem("cart")));
+    setCart(JSON.parse(localStorage.getItem("cart")) || "");
     setWishlist(JSON.parse(localStorage.getItem("wishlist")) || []);
-    setCompare(JSON.parse(localStorage.getItem("compare")));
+    setCompare(JSON.parse(localStorage.getItem("compare")) || []);
    },[])
 
    useEffect(()=>{

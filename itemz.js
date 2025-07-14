@@ -802,7 +802,7 @@ const data = [
   {
     id: 81,
     name: "Stonewashed Tana",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-16-1.jpg",
     price: 67,
     rating: null,
@@ -811,7 +811,7 @@ const data = [
   {
     id: 82,
     name: "Maya Dune Linel",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-15-1.jpg",
     price: 530,
     rating: null,
@@ -820,7 +820,7 @@ const data = [
   {
     id: 83,
     name: "Architecture Throw",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-14-1.jpg",
     price: 380,
     rating: null,
@@ -829,7 +829,7 @@ const data = [
   {
     id: 84,
     name: "Green Sway",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-13-1.jpg",
     price: 2340,
     rating: null,
@@ -838,7 +838,7 @@ const data = [
   {
     id: 85,
     name: "Miha",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-12-1.jpg",
     price: 120,
     rating: null,
@@ -847,7 +847,7 @@ const data = [
   {
     id: 86,
     name: "Zaid",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-11-1.jpg",
     price: 780,
     rating: null,
@@ -856,7 +856,7 @@ const data = [
   {
     id: 87,
     name: "Nidodape",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-10-1.jpg",
     price: 16,
     rating: null,
@@ -865,7 +865,7 @@ const data = [
   {
     id: 88,
     name: "Cobblestone",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-9-1.jpg",
     price: 499,
     rating: null,
@@ -874,7 +874,7 @@ const data = [
   {
     id: 89,
     name: "Louise",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-8-1.jpg",
     price: 230,
     rating: null,
@@ -883,7 +883,7 @@ const data = [
   {
     id: 90,
     name: "Stoense",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-7-1.jpg",
     price: 230,
     rating: null,
@@ -892,7 +892,7 @@ const data = [
   {
     id: 91,
     name: "Isabel",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-6-1.jpg",
     price: 15,
     rating: null,
@@ -901,7 +901,7 @@ const data = [
   {
     id: 92,
     name: "Max",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-5-1.jpg",
     price: 1180,
     rating: null,
@@ -910,7 +910,7 @@ const data = [
   {
     id: 93,
     name: "Hem",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-4-1.jpg",
     price: 45,
     rating: null,
@@ -919,7 +919,7 @@ const data = [
   {
     id: 94,
     name: "Mediteranni",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-3-1.jpg",
     price: 540,
     rating: null,
@@ -928,7 +928,7 @@ const data = [
   {
     id: 95,
     name: "Mega Dot",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-2-1.jpg",
     price: 85,
     rating: null,
@@ -937,7 +937,7 @@ const data = [
   {
     id: 96,
     name: "Sentiero Di Fillipo",
-    category: Textile,
+    category: "Textile",
     img: "./wd-furniture-textiles-prod-1-1.jpg",
     price: 3200,
     rating: null,
