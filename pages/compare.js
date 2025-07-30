@@ -3,10 +3,23 @@ import { urbanist, workSans } from "./_app";
 import { Product } from "@/context/ProductContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { cartAdd } from "@/Services/api";
 const compare = () => {
-  const { setProduct, compare, setCompare } = useContext(Product);
+  const { setProduct, compare, setCompare,cart,setCart } = useContext(Product);
   const [data, setData] = useState([]);
   const router = useRouter();
+  async function handleCart(item){
+ 
+ if(cart.some((i)=> i.name === item.name)){
+  setCart(cart.map((x)=>{
+    if(item.name === x.name){ return {...x,quantity : x.quantity+1} }else{ return x}
+  }))
+ }else{
+  setCart([...cart,{...item , quantity : 1}])
+ }
+ const message =  await cartAdd(item);
+ console.log(message);
+}
   function handleItem(item, value) {
     if (value) {
       if (!data.find((itm) => itm.id === item.id)) {
@@ -124,7 +137,7 @@ const compare = () => {
                             </span>
                           </span>
                           <span className="z-10 cart lg:flex gap-4 items-center opacity-100 text-[15px]">
-                            <button className="px-4 bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-semibold  py-[8px]  group/cart cursor-pointer">
+                            <button className="px-4 bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-semibold  py-[8px]  group/cart cursor-pointer" onClick={(e)=>{e.preventDefault(); e.stopPropagation(); handleCart(item)}}>
                               {" "}
                               <h1 className="text-[14px] group-hover/cart:-translate-y-6 transition-all duration-200 ease-in-out">
                                 Add to cart

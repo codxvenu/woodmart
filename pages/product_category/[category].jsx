@@ -11,7 +11,7 @@ import data from '@/itemz'
 
 const product_category = () => {
   const router = useRouter();
-  const {product,setProduct} = useContext(Product);
+  const {product,setProduct , items} = useContext(Product);
   const[loading, setLoading] = useState(true);
   const {category} = router.query;
 

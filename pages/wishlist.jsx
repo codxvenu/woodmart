@@ -3,8 +3,20 @@ import { urbanist, workSans } from './_app'
 import { Product } from '@/context/ProductContext'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+async function handleCart(item){
+ 
+ if(cart.some((i)=> i.name === item.name)){
+  setCart(cart.map((x)=>{
+    if(item.name === x.name){ return {...x,quantity : x.quantity+1} }else{ return x}
+  }))
+ }else{
+  setCart([...cart,{...item , quantity : 1}])
+ }
+ const message =  await cartAdd(item);
+ console.log(message);
+}
 const wishlist = () => {
-    const{setProduct,wishlist,setWishlist} =useContext(Product);
+    const{setProduct,wishlist,setWishlist,cart,setCart} =useContext(Product);
     const[data,setData] = useState([]);
     const router = useRouter();
     function handleItem(item,value){
@@ -91,7 +103,7 @@ const wishlist = () => {
               <span className="flex justify-between items-center text-[rgb(245,154,87)] font-medium max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px]">
                 <h1>${item.price}</h1>
                 <span className="colors flex mt-[-10px]">
-                  {item.colors.map((color,index) => (
+                  {/* {item.colors.map((color,index) => (
                     <span key={index} className="flex flex-col justify-center items-center gap-0.5 group/color w-[22px]">
                       <small className=" -translate-x-1/2 px-1.5 py-[2px] text-[13px] text-white bg-black rounded whitespace-nowrap group-hover/color:opacity-100 transition-opacity duration-200 relative top-[-45%] left-1/2 opacity-0">
                         {color.name}
@@ -104,11 +116,11 @@ const wishlist = () => {
                         <i className="ri-arrow-down-s-fill absolute top-[-22px] text-[20px] text-black left-[-3px] group-hover/color:opacity-100 transition-opacity duration-200 opacity-0"></i>
                       </span>
                     </span>
-                  ))}
+                  ))} */}
                 </span>
               </span>
               <span className="z-10 cart lg:flex gap-4 items-center transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-[20px] lg:opacity-0">
-                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart">
+                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart" onClick={(e)=>{e.preventDefault(); e.stopPropagation(); handleCart(item)}}>
                   {" "}
                   <h1 className="text-[14px] group-hover/cart:-translate-y-6 transition-all duration-200 ease-in-out">
                     Add to cart

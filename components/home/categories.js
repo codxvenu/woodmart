@@ -67,9 +67,9 @@ const categories = () => {
     </span>
    <div className="categories grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center  lg:grid-cols-5 mt-[40px] sm:gap-[10px] lg:gap-[20px] max-[576px]:gap-4">
    {data.map((product, index) => (
-    <Link href={`/product_category/${product.pname}`} onClick={()=>setProduct(product.pname)} className='block w-full'>
+    <Link key={index} href={`/product_category/${product.pname}`} onClick={()=>setProduct(product.pname)} className='block w-full'>
   <span
-    key={index}
+    
     className="z-1 h-[100%] w-[100%] sm:bg-black aspect-square flex flex-col justify-center items-center rounded-full gap-4 group relative overflow-hidden bg-cover bg-center transition-transform duration-500"
     style={{ backgroundImage: `url(${product.img})` }}
   >

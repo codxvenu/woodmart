@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { urbanist, workSans } from "@/pages/_app";
 import {  useRouter } from "next/router";
 import { Product } from "@/context/ProductContext";
-import data  from "@/itemz";
 import Link from "next/link";
 import Side_cart from "../shopping_cart/side_cart";
+import { cartAdd } from "@/Services/api";
 const card = ({ classNamees ,start, end, page }) => {
 
-  const{product ,cart,setCart ,setWishlist,wishlist,compare,setCompare }=useContext(Product)
+  const{product ,cart,setCart ,setWishlist,wishlist,compare,setCompare,data }=useContext(Product)
 
   const[side,setSide] = useState(false);
   const router = useRouter();
@@ -15,7 +15,18 @@ const card = ({ classNamees ,start, end, page }) => {
 useEffect(() => {
   window.scrollTo({ top: 0 , behavior: "smooth" });
 }, [page]);
-
+async function handleCart(item){
+ 
+ if(cart.some((i)=> i.name === item.name)){
+  setCart(cart.map((x)=>{
+    if(item.name === x.name){ return {...x,quantity : x.quantity+1} }else{ return x}
+  }))
+ }else{
+  setCart([...cart,{...item , quantity : 1}])
+ }
+ const message =  await cartAdd(item);
+ console.log(message);
+}
 useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -100,7 +111,7 @@ return (
               </span>
               <span className="max-[768px]:items-center">
                 {" "}
-                <button className=" bg-[rgb(245,154,87)] overflow-hidden mt-2 h-[36px] rounded-3xl text-white font-bold  text-[12px] p-[5px_14px]  group/cart">
+                <button className=" bg-[rgb(245,154,87)] overflow-hidden mt-2 h-[36px] rounded-3xl text-white font-bold  text-[12px] p-[5px_14px]  group/cart" onClick={(e)=>{e.preventDefault(); e.stopPropagation(); handleCart(item)}}>
                   {" "}
                   <h1 className="text-[12px] font-medium translate-y-1 group-hover/cart:-translate-y-6 transition-all duration-200 ease-in-out">
                     Add to cart
@@ -224,12 +235,7 @@ return (
                 </span>
               </span>
               <span className="z-10 cart lg:grid grid-cols-[1fr_.4fr] gap-4 items-center transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-[20px] lg:opacity-0">
-                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart" onClick={(e)=>{e.stopPropagation(); e.preventDefault(); setSide(true); !cart.some((idx)=>idx.id === item.id) ? setCart([...cart,{...item,quantity:1}]) : 
-                setCart(cart.map((idx)=>{
-                  if(idx.id === item.id){  return {...item,quantity: idx.quantity + 1}
-                }else{
-                  return idx
-                  } }))}}>
+                <button className="w-full bg-[rgb(245,154,87)] overflow-hidden h-[36px] rounded-3xl text-white font-bold  py-[8px]  group/cart" onClick={(e)=>{e.stopPropagation(); e.preventDefault(); setSide(true); handleCart(item)}}>
                   <h1 className="text-[14px] group-hover/cart:-translate-y-6 transition-all duration-200 ease-in-out">
                     Add to cart
                   </h1>

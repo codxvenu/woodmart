@@ -1,32 +1,90 @@
 import { urbanist } from '@/pages/_app'
-import React, { use, useState } from 'react'
-
+import React, { use, useState,useContext } from 'react'
+import { useRouter } from 'next/router';
+import { Product } from '@/context/ProductContext';
 const form = () => {
     const[pass,setPass]=useState(false);
-    const[form,setForm] =useState("login");
+    const {setUser} = useContext(Product)
+    const[form,setForm] =useState("register");
+    const[username,setUsername]=useState("")
+    const[password,setPassword]=useState("")
+    const[email,setEmail]=useState("");
+    const router = useRouter();
+
+  const Register = async (username,password,email) => {
+    console.log(username,password,email)
+    const response = await fetch("http://localhost:5000/register",{
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      credentials : "include",
+      body : JSON.stringify({username,password,email})
+    })
+    const data =  await response.json();
+    if(!response.ok){
+      console.log(data.error);
+    }else{
+      alert(data.message)
+      //localStorage.setItem("username",username);
+    }
+      //setForm("login")
+      //router.push("/myaccount/Dashboard") 
+  }
+
+ async function Login(){
+  console.log(username,password);
+  
+  const res = await fetch("http://localhost:5000/login",{
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    credentials : "include",
+    body :  JSON.stringify({username,password}),
+  })
+  const data = await res.json();
+  if(!res.ok){ 
+    console.log(data.error);
+  }else{
+    console.log(data);
+    alert(data.message)
+    localStorage.setItem("username",username)
+    console.log(username);
+    setUser(username)
+    
+    router.push("/myaccount/Dashboard") 
+  }
+  }
+  
+
   return (
     <div className='grid md:grid-cols-2 py-10 max-w-[1080px] mx-auto '>
       <div>
        {form==="register" && 
-        <form className='flex flex-col gap-4 px-[40px] fadeUp'>
+        <form className='flex flex-col gap-4 px-[40px] fadeUp' method='post'>
             <h1 className={`${urbanist.className} text-[22px] font-bold uppercase`}>Register</h1>
-            {["username","email","password"].map((imp)=>(
+            {[
+  { "name": "Username", "fn": setUsername },
+  { "name": "Email", "fn": setEmail },
+  { "name": "Password", "fn": setPassword }
+]
+.map((imp)=>(
 
-            <label htmlFor={imp} className='grid gap-2 capitalize relative'> <span>{imp} <span className='text-[#f59a57]'>*</span></span>  <input type="text" name={imp} className='border-[1px] border-[rgba(0,0,0,0.2)] rounded-3xl py-2 bg-white' /><i className={`ri-eye${pass? "-off" : ""}-line absolute top-[55%] right-5 ${imp === "password" && "!block"} hidden`} onClick={()=>setPass(imp === "password" && !pass) }></i></label>
+            <label htmlFor={imp.name} className='grid gap-2 capitalize relative'> <span>{imp.name} <span className='text-[#f59a57]'>*</span></span>  <input type="text" name={imp.name} onChange={(e)=> imp.fn(e.target.value)} className='border-[1px] border-[rgba(0,0,0,0.2)] rounded-3xl py-2 bg-white' /><i className={`ri-eye${pass? "-off" : ""}-line absolute top-[55%] right-5 ${imp === "password" && "!block"} hidden`} onClick={()=>setPass(imp === "password" && !pass) }></i></label>
             ))}
         
-            <button className='text-white bg-[#f59a57] rounded-4xl w-full py-2'>Register</button>
+            <button type='button' className='text-white bg-[#f59a57] rounded-4xl w-full py-2' onClick={()=>{Register(username,password,email)}}>Register</button>
         </form>
        }
        {form==="login" && 
-       <form className='flex flex-col gap-4 px-[40px] fadeUp'>
+       <form className='flex flex-col gap-4 px-[40px] fadeUp' method="post" >
             <h1 className={`${urbanist.className} text-[22px] font-bold uppercase`}>Login</h1>
-            {["Username or email address","password"].map((imp)=>(
+           {[ { "name": "Username", "fn": setUsername },
+              { "name": "Password", "fn": setPassword }].map((imp)=>(
 
-            <label htmlFor={imp} className='grid gap-2 capitalize relative'><span>{imp} <span className='text-[#f59a57]'>*</span></span> <input type="text" name={imp} className='border-[1px] border-[rgba(0,0,0,0.2)] rounded-3xl py-2 bg-white' /><i className={`ri-eye${pass? "-off" : ""}-line absolute top-[55%] right-5 ${imp === "password" && "!block"} hidden`} onClick={()=>setPass(imp === "password" && !pass) }></i></label>
+            <label htmlFor={imp.name} className='grid gap-2 capitalize relative'><span>{imp.name} <span className='text-[#f59a57]'>*</span></span> <input type="text" name={imp.name} onChange={(e)=>imp.fn(e.target.value)} className='border-[1px] border-[rgba(0,0,0,0.2)] rounded-3xl py-2 bg-white' /><i className={`ri-eye${pass? "-off" : ""}-line absolute top-[55%] right-5 ${imp === "password" && "!block"} hidden`} onClick={()=>setPass(imp === "password" && !pass) }></i></label>
             ))}
         
-            <button className='text-white bg-[#f59a57] rounded-4xl w-full py-2'>Log in</button>
+            <button className='text-white bg-[#f59a57] rounded-4xl w-full py-2' type='button' onClick={()=>Login()}>Log in</button>
             <span className='flex justify-between max-[768px]:flex-col max-[768px]:gap-4'>
                 <label htmlFor="" className='flex gap-2'>
                 <input type="checkbox" name="remmber" />

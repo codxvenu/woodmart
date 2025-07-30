@@ -1,5 +1,5 @@
 import { urbanist, workSans } from '@/pages/_app';
-import {React ,useContext,useState} from 'react'
+import {React ,useContext,useState , useEffect} from 'react'
 import Cards from './cards';
 import { Product } from '@/context/ProductContext';
 import { useRouter } from 'next/router';
@@ -7,20 +7,53 @@ import Link from 'next/link';
 const cart = () => {
     const {cart,setCart} = useContext(Product);
     const total = cart.reduce((sum,idx)=>sum + idx.price * idx.quantity , 0);
-    function handleQuantity(item,quantity){
-      const updatedquantity = cart.map((i)=>{
-        if(item.name === i.name){
-          return {...item,quantity:quantity}
-        }else{
-          return item
-        }
-      
-      })
-      setCart(updatedquantity);
+    async function handleQuantity(item,quantity){
+      setCart(cart.map((i)=>{
+          if(item.name === i.name){
+          return {...item,quantity : quantity}
+          }else{
+            return item
+          }
+        }))
+      const response = await fetch("http://localhost:5000/cart/updateQuantity", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      quantity: quantity,
+      name: item.name
+    })
+  });
+      const data = await response.json();
+      if(!response.ok){
+        console.error(data.error)
+      }else{
+        console.log(data.message);
+        
+      }
     }
+    const[change ,setChange] =useState(0);
+       const [slideWidth, setSlideWidth] = useState(282);
+       
+      useEffect(() => {
+        const updateSlideWidth = () => {
+          const width = window.innerWidth;
+          if (width >= 1200) setSlideWidth((window.innerWidth - 120) / 5)
+         else if (width >= 1024) setSlideWidth((window.innerWidth - 0) / 5);         // Large screens
+          else if (width >= 768) setSlideWidth((window.innerWidth - 25) / 4 );     // Medium screens
+          else setSlideWidth((window.innerWidth - 32) / 2);                       // Mobile
+        };
+    
+        updateSlideWidth(); // run on mount
+        window.addEventListener('resize', updateSlideWidth); // run on resize
+    
+        return () => window.removeEventListener('resize', updateSlideWidth);
+      }, []);
   return (
-    <div className={`grid grid-cols-[3fr_1.5fr] gap-6 cart ${workSans.className}`}>
-      <div className="flex flex-col gap-5">
+    <div className={`max-[768px]:block lg:grid grid-cols-[3fr_1.5fr] gap-6 cart ${workSans.className}`}>
+      <div className="flex flex-col gap-5 overflow-hidden">
         <span className='flex flex-col gap-2 rounded-[8px] p-[20px] bg-white text-[#777777]'>
              {total < 1300 ?  <h2> Add <span className={`text-[#f59a57] font-bold ${urbanist.className}`}>${1300 - total}.00 </span> to cart and get free shipping!  </h2> : <h2>Your order qualifies for free shipping!</h2> }
                       <div className="w-full h-[10px] rounded-4xl mt-4 bg-[rgba(0,0,0,0.06)] " ><div style={{width : `${total > 1300? 100 : (total / 1300)*100}%`}} className=" h-[10px] rounded-4xl  bg-[rgb(245,154,87)] bg-[length:15px_15px] bg-repeat bg-[linear-gradient(135deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)]"></div>
@@ -69,8 +102,13 @@ const cart = () => {
                 <button className='bg-[#f59a57] text-white px-4 py-2.5 rounded-4xl text-[13px] font-medium cursor-pointer'>Apply coupon</button>
             </span>
         </span>
-        <ul className="flex gap-6 cursor-pointer">
-        <li className="grid grid-cols-[.1fr_1fr] gap-4 text-[15px] text-[#777777] bg-white w-fit rounded-xl p-5 !text-start">
+        <ul className="flex gap-6 cursor-pointer overflow-hidden w-max max-[768px]:mb-4 relative" style={{transform : `translateX(${change >= 0 ? -change*slideWidth : change*slideWidth }px)`}}>
+          <span className="lg:hidden arrows h-[20px] font-light inset-0 text-[#76767669] w-full absolute top-[50%] lg:text-4xl text-3xl flex justify-between items-center">
+              <i className={`ri-arrow-left-s-line group-hover/main:translate-x-5 group-hover/main:opacity-100 lg:opacity-0  lg:-translate-x-full transition-all duration-300 ease-in-out max-[1224px]:-translate-x-2 ${change === 0 ? "text-[76767669]": "text-[#767676]"}`} onClick={()=>{change > 0 ? setChange(change-1) : console.log(change,"no previous item");
+              }}></i>
+              <i className={`ri-arrow-right-s-line group-hover/main:-translate-x-5  group-hover/main:opacity-100 lg:opacity-0 lg:translate-x-full transition-all duration-300 ease-in-out max-[1224px]:translate-x-2 ${change+5 === 3 ? "text-[76767669]": "text-[#767676]"}`} onClick={()=>{change + 5 < 3 ? setChange(change+1) : console.log(change,"no previous item")}}></i>
+            </span>
+        <li className="grid grid-cols-[.1fr_1fr] gap-4 text-[15px] text-[#777777] bg-white w-fit rounded-xl p-5 !text-start" >
             <span className="w-[32px] h-[32px] inline-block">
               <img src="/wd-furniture-phone-1.svg" alt="" />
               </span>

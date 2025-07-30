@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Carousel from "@/components/home/Carousel";
 import Categories from "@/components/home/categories";
@@ -9,6 +9,7 @@ import Furniture_col from "@/components/home/furniture_collec";
 import Rules from "@/components/home/rules";
 
 const home = ()=>{
+
     return (
       <>
       

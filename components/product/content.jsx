@@ -4,6 +4,7 @@ import React, { useState ,useEffect, useContext } from "react";
 import Side_cart from "../shopping_cart/side_cart";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { cartAdd } from "@/Services/api";
 const content = () => {
     const {items ,cart, setCart} = useContext(Product)
     const [itemCount , setItemCount] = useState(1);
@@ -13,14 +14,17 @@ const content = () => {
     useEffect(() => {
       
     }, [itemCount]);
-const handleCart= ()=>{
-
-  const item = cart.some(item=>item.name===items.name);
-  if(item){
-    setCart(cart.map(item=>item.name===items.name? {...item,quantity:item.quantity+itemCount}:item))
-  }else{
-    setCart([...cart,{...items,quantity:itemCount}])
-  }
+async function handleCart(item){
+ 
+ if(cart.some((i)=> i.name === item.name)){
+  setCart(cart.map((x)=>{
+    if(item.name === x.name){ return {...x,quantity : x.quantity+itemCount} }else{ return x}
+  }))
+ }else{
+  setCart([...cart,{...item , quantity : itemCount}])
+ }
+ const message =  await cartAdd(item);
+ console.log(message);
 }
   return (
     <>
@@ -106,7 +110,7 @@ const handleCart= ()=>{
               +
             </button>
           </span>
-          <button className="bg-[rgb(245,154,87)] sm:w-[inherit] rounded-[20px] text-white cursor-pointer" onClick={()=>{setSide(true); handleCart()}}>
+          <button className="bg-[rgb(245,154,87)] sm:w-[inherit] rounded-[20px] text-white cursor-pointer" onClick={()=>{setSide(true); handleCart(item)}}>
             Add to cart
           </button>
           <Link href="/checkout" className="lg:w-[inherit] w-full col-span-2">

@@ -1,9 +1,32 @@
 import Side_bar from '@/components/account/Side_bar'
-import React from 'react'
+import React, { useEffect , useState} from 'react'
 import Head from '@/components/account/head'
 import { workSans } from '../_app'
 import Link from 'next/link'
 const Orders = () => {
+
+  const[orders,setOrder] = useState([])
+  useEffect(()=>{
+
+    async function Order() {
+        const response = await fetch("http://localhost:5000/order",{
+          credentials : "include"
+        });
+        const data = await response.json();
+        if(!response.ok){
+          console.log(data.error)
+        }else{
+          console.log(data.data)
+          setOrder(data.data)
+        }
+    }
+    Order();
+  },[])
+  function formatDate(dateStr) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }; // → "July 29, 2025"
+  return new Date(dateStr).toLocaleDateString('en-US', options);
+}
+
   return (
     <>
       <Head/>
@@ -21,14 +44,16 @@ const Orders = () => {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>#2293</td>
-                <td>June 11, 2025</td>
+          {orders.map((order)=>(
+            <tr key={order.id}>
+                <td>#{order.id}</td>
+                <td>{formatDate(order.created_at)}</td>
                 <td>On hold</td>
-                <td><span>$2,800.00 </span>for 1 item</td>
-                <td><Link href={`/myaccount/view-order/1`}><button className='bg-[#f59a57] text-white rounded-3xl'>View</button>
+                <td><span>${order.items.reduce((i,y)=>(i + y.price),0)} </span>for {order.items.length} item</td>
+                <td><Link href={`/myaccount/view-order/${order.id}`}><button className='bg-[#f59a57] text-white rounded-3xl'>View</button>
                 </Link></td>
             </tr>
+          ))}
         </tbody>
       </table>
     </div>
