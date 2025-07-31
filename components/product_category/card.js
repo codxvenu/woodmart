@@ -7,7 +7,7 @@ import Side_cart from "../shopping_cart/side_cart";
 import { cartAdd } from "@/Services/api";
 const card = ({ classNamees ,start, end, page }) => {
 
-  const{product ,cart,setCart ,setWishlist,wishlist,compare,setCompare,data }=useContext(Product)
+  const{product ,cart,setCart ,setWishlist,wishlist,compare,setCompare,filtered }=useContext(Product)
 
   const[side,setSide] = useState(false);
   const router = useRouter();
@@ -50,7 +50,7 @@ return (
       <div
         className={`items-container grid grid-cols-${classNamees} md:gap-4 gap-4 `}
       >
-        {data.filter((idx)=>idx.category === product || product === "shop" ).slice(start,end+1).map((item,index) => (
+        {filtered.filter((idx)=>idx.category === product || product === "shop" ).slice(start,end+1).map((item,index) => (
          <Link href="/product">
          <div key={index} className="relative cursor-pointer flex md:flex-row flex-col items-center flex-[0_0_300px] md:p-[30px] p-[10px] bg-white rounded-[10px] group" >
             <span className="relative lg:w-[300px] flex justify-center">
@@ -74,7 +74,7 @@ return (
                 </h1>
                 <span>
                   {[1, 2, 3, 4, 5].map((rate) =>
-                    rate <= data[0].rating ? (
+                    rate <= filtered[0].rating ? (
                       <i className="ri-star-fill text-[#EABE12]"></i>
                     ) : (
                       <i className="ri-star-line text-[#bbb]"></i>
@@ -161,7 +161,7 @@ return (
       </div>
     :
         <div className={`items-container grid  md:grid-cols-${classNamees} grid-cols-2  lg:gap-6 md:gap-4 gap-2 `}>
-        {data.filter((idx)=>idx.category === product || product === "shop" ).slice(start,end+1).map((item,index) => (
+        {filtered.filter((idx)=>idx.category === product || product === "shop" ).slice(start,end+1).map((item,index) => (
          <Link href={`/product/${item.id}`}>
 
          <div
@@ -198,7 +198,7 @@ return (
               <span className="flex justify-between items-center font-medium">
                 <h1 className="max-[548px]:text-[13.5px] lg:text-[15px] ">{item.name}</h1>
                 <span>
-                  {data[0].rating}
+                  {filtered[0].rating}
                   <i className="ri-star-fill text-[#EABE12]"></i>
                 </span>
               </span>

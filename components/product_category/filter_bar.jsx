@@ -1,19 +1,23 @@
-import React, { useRef,useEffect, useState } from "react";
+import React, { useRef,useEffect, useState, useContext } from "react";
 import { urbanist, workSans } from "@/pages/_app";
+import { Product } from "@/context/ProductContext";
 const filter_bar = () => {
+  const {setFiltered,data} = useContext(Product)
  const [minValue, setMinValue] = useState(0);
 const [maxValue, setMaxValue] = useState(100);
 
 const minRef = useRef(minValue);
 const maxRef = useRef(maxValue);
-
 // Keep refs updated
 useEffect(() => {
   minRef.current = minValue;
+  setFiltered(data.filter((i) => Number(i.price) > Number(minValue)));
+  console.log(minValue,maxValue);
 }, [minValue]);
 
 useEffect(() => {
   maxRef.current = maxValue;
+  setFiltered(data.filter((i) => Number(i.price) > Number(maxValue)));
 }, [maxValue]);
 
 const handleMinRangeChange = (e) => {

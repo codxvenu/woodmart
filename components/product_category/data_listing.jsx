@@ -4,13 +4,13 @@ import Card from "./card";
 import Filter_bar from "./filter_bar";
 import {Product} from "@/context/ProductContext";
 const data_listing = () => {
-  const {product,data} = useContext(Product);
+  const {product,filtered} = useContext(Product);
   const [display_size, setDisplaysize] = useState(9);
   const [display_type, setDisplaytype] = useState(3);
   const count = product === "shop"
-  ? data.length
-  : data.reduce((sum, idx) => sum + (product === idx.category ? 1 : 0), 0);
-  console.log(product,data,product === data[0].category);
+  ? filtered.length
+  : filtered.reduce((sum, idx) => sum + (product === idx.category ? 1 : 0), 0);
+  console.log(product,filtered,product === filtered[0]?.category);
   
   const [page, setPage] = useState(0);
   const [start, setStart] = useState(0);

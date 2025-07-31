@@ -11,7 +11,8 @@ const ProductContext = ({children}) => {
    const[wishlist,setWishlist] = useState([]);
    const[compare,setCompare] = useState([]);
    const[data,setData] = useState([]);
-   const [address,setAddress] = useState({})
+   const [address,setAddress] = useState({});
+   const[filtered,setFiltered] = useState([]);
    useEffect(()=>{
     setProduct(localStorage.getItem("category") || "");
     setItems(localStorage.getItem("items") !== "undefined" ? JSON.parse(localStorage.getItem("items")) : [])
@@ -32,6 +33,7 @@ const ProductContext = ({children}) => {
     useEffect(()=>{
       localStorage.setItem("compare", JSON.stringify(compare));
     },[compare]);
+    
     useEffect(()=>{
       const Items = async()=>{
         const response = await fetch("/api/item",{
@@ -44,8 +46,10 @@ const ProductContext = ({children}) => {
         }
         if(data.data){
           setData(data.data)
+          setFiltered(data.data)
         }else{
-          setData([])
+          setData()
+          setFiltered()
         }
       }
       Items();
@@ -71,10 +75,11 @@ const ProductContext = ({children}) => {
      useEffect(()=>{
             const addr = JSON.parse(localStorage.getItem("form"));
             setAddress(addr);
+  //        
         },[])
   return (
     <div>
-      <Product.Provider value={{product,setProduct,items,setItems,cart,setCart,wishlist,setWishlist,compare,setCompare,data,user,setUser,address,setAddress}}>
+      <Product.Provider value={{product,setProduct,items,setItems,cart,setCart,wishlist,setWishlist,compare,setCompare,data,user,setUser,address,setAddress,filtered,setFiltered}}>
 {children}
 
       </Product.Provider>
