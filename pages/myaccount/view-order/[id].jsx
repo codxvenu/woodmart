@@ -11,7 +11,7 @@ const viewOrder = () => {
    useEffect(()=>{
  
      async function Order() {
-         const response = await fetch(`/order`,{
+         const response = await fetch(`/api/order`,{
            credentials : "include"
          });
          const data = await response.json();

@@ -15,7 +15,7 @@ const cart = () => {
             return item
           }
         }))
-      const response = await fetch("/cart/updateQuantity", {
+      const response = await fetch("/api/cart/updateQuantity", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

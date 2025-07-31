@@ -18,7 +18,7 @@ app.use(
   })
 );
 app.use(cookie());
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
   res.send("hello express");
 });
 app.use((req, res, next) => {
@@ -70,7 +70,7 @@ const db = mysql.createPool({
   database: "u679703987_wood",
 });
 
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   const { username, password, email } = req.body;
   console.log(req.body, username, password, email);
   if (!username || !password || !email)
@@ -103,7 +103,7 @@ app.post("/register", async (req, res) => {
   );
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
   console.log(req.body, username, password, "body");
   db.query(
@@ -125,7 +125,7 @@ app.post("/login", (req, res) => {
   );
 });
 
-app.get("/item", (req, res) => {
+app.get("/api/item", (req, res) => {
   db.query("select * from items", [], (err, result) => {
     if (err) {
       return res.status(400).json({ error: "Db error" + err });
@@ -133,7 +133,7 @@ app.get("/item", (req, res) => {
     return res.status(200).json({ data: result });
   });
 });
-app.get("/cart", (req, res) => {
+app.get("/api/cart", (req, res) => {
   const username = req.cookies.user;
   if (!username)
     return res.status(401).json({ error: "username missing " + username });
@@ -161,7 +161,7 @@ app.get("/cart", (req, res) => {
     }
   });
 });
-app.post("/cart", (req, res) => {
+app.post("/api/cart", (req, res) => {
   const { item } = req.body;
   console.log(item, "empty item");
   if (!item) return res.status(400).json({ error: "item is empty" });
@@ -275,7 +275,7 @@ app.post("/cart", (req, res) => {
     console.log(e, "error db");
   }
 });
-app.post("/cart/updateQuantity", (req, res) => {
+app.post("/api/cart/updateQuantity", (req, res) => {
   const { name, quantity } = req.body;
   const username = req.cookies.user;
   console.log(name, quantity, "AAA");
@@ -305,7 +305,7 @@ app.post("/cart/updateQuantity", (req, res) => {
     }
   );
 });
-app.post("/orders", (req, res) => {
+app.post("/api/orders", (req, res) => {
   const {item} = req.body;
   const username = req.cookies.user
   db.query("insert into orders(user) values (?)", [username], (err, result) => {
@@ -351,7 +351,7 @@ app.post("/orders", (req, res) => {
     })
 
   });
-app.get("/order",(req,res)=>{
+app.get("/api/order",(req,res)=>{
   const username =  req.cookies.user
   db.query("select * from orders where user = ?",[username],(err,result)=>{
     if(err){
@@ -373,7 +373,7 @@ app.get("/order",(req,res)=>{
   }
   })
 })
-app.post("/DeleteCart",(req,res)=>{
+app.post("/api/DeleteCart",(req,res)=>{
   const username = req.cookies.user
   db.query("select * from cart where user = ?",[username],(err,result)=>{
     if(err){
@@ -395,7 +395,7 @@ app.post("/DeleteCart",(req,res)=>{
     }
   })
 });
-app.get("/invoices",(req,res)=>{
+app.get("/api/invoices",(req,res)=>{
   const username = req.cookies.user;
   db.query("select * from orders where user = ? and status = ?",[username,"sucess"],(err,result)=>{
     if(err){
@@ -404,7 +404,7 @@ app.get("/invoices",(req,res)=>{
     return res.status(200).json({data : result})
   })
 })
-app.post("/invoice/:orderid/",async(req,res)=>{
+app.post("/api/invoice/:orderid/",async(req,res)=>{
   const {orderid} = req.params;
   const user = req.body.address;
   if(!user) console.log(req.params.address,"empty addr");

@@ -9,7 +9,7 @@ const Orders = () => {
   useEffect(()=>{
 
     async function Order() {
-        const response = await fetch("/invoices",{
+        const response = await fetch("/api/invoices",{
           credentials : "include"
         });
         const data = await response.json();
@@ -29,7 +29,7 @@ const Orders = () => {
     console.log(address,"Addr");
     setLoad(true);
   try {
-    const res = await fetch(`/invoice/${id}`, {
+    const res = await fetch(`/api/invoice/${id}`, {
       credentials: "include",
       body : JSON.stringify({address : address}),
       headers : {"Content-Type" : "application/json"},
