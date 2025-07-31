@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cookie = require("cookie-parser");
 const mysql = require("mysql");
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 const port = 5000;
 
@@ -11,7 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000", // your frontend origin
     credentials: true,
   })
 );
@@ -23,6 +25,43 @@ app.use((req, res, next) => {
   console.log("requested", req.method, req.url);
   next();
 });
+
+function generateInvoice(invoice, filename, success, error) {
+    const postData = JSON.stringify(invoice);
+    const options = {
+        hostname: "invoice-generator.com",
+        port: 443,
+        path: "/",
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer sk_0P6BuMi6gyYfBvbDuDpYY93CsCeKeC9K`,
+            "Content-Type": "application/json",
+            "Content-Length": Buffer.byteLength(postData)
+        }
+    };
+
+    const file = fs.createWriteStream(filename);
+
+    const req = https.request(options, function (res) {
+        res.pipe(file);
+
+        file.on('finish', () => {
+            file.close();
+            success && success();
+        });
+
+        file.on('error', (err) => {
+            fs.unlink(filename, () => {}); // delete incomplete file
+            error && error(err);
+        });
+    });
+
+    req.on('error', error);
+    req.write(postData);
+    req.end();
+}
+
+
 
 const db = mysql.createPool({
   host: "147.93.79.55",
@@ -353,6 +392,71 @@ app.post("/DeleteCart",(req,res)=>{
     }else{
       console.log("cart not found");
       
+    }
+  })
+});
+app.get("/invoices",(req,res)=>{
+  const username = req.cookies.user;
+  db.query("select * from orders where user = ? and status = ?",[username,"sucess"],(err,result)=>{
+    if(err){
+      return res.status(400).json({error : err})
+    }
+    return res.status(200).json({data : result})
+  })
+})
+app.post("/invoice/:orderid/",async(req,res)=>{
+  const {orderid} = req.params;
+  const user = req.body.address;
+  if(!user) console.log(req.params.address,"empty addr");
+  
+  db.query("select * from orders where id = ?",[orderid],(err,result)=>{
+if(err){
+      console.log(err);
+      return res.status(400).json({error : err})
+    }
+    if(result.length > 0){
+      const fulldata = result[0];
+      const Details = {
+        from: "Wood Mart Store",
+        to: `${user.first} ${user.last} \n${user.email} \n${user.phone} \n${user.town}, ${user.state}, ${user.pin}, ${user.country}`,
+        currency: "INR",
+        number: `ORDER-${orderid}`,
+        tax: 0,
+        notes: "Thank you for your purchase!",
+        terms: "Goods once sold will not be returned."
+      }
+      db.query("select * from order_items where order_id = ?",[orderid],(err,results)=>{
+        if(err){
+      console.log(err);
+      return res.status(400).json({error : err})
+    }
+   
+    const folder = path.join(__dirname, '/invoices');
+if (!fs.existsSync(folder)) {
+  fs.mkdirSync(folder, { recursive: true });
+} 
+    const Adata =results.map(item => ({
+  name: item.name,
+  quantity: item.quantity,
+  unit_cost: item.price}))
+       console.log({...Details,items : Adata});
+    const filePath = path.join(__dirname, `/invoices/invoice-${orderid}.pdf`);
+    generateInvoice({...Details,items : Adata}, filePath, () => {
+        res.download(filePath, `invoice-${orderid}.pdf`, (err) => {
+            if (err) {
+                res.status(500).send("Error downloading invoice");
+            } else {
+                // Optional: clean up file after download
+               // fs.unlinkSync(filePath);
+            }
+        });
+    }, (error) => {
+        console.error(error);
+        res.status(500).send("Failed to generate invoice");
+    });
+      })
+    }else{
+      return res.status(400).json({error : "order not found"})
     }
   })
 })

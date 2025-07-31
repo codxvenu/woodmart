@@ -34,7 +34,7 @@ const ProductContext = ({children}) => {
     },[compare]);
     useEffect(()=>{
       const Items = async()=>{
-        const response = await fetch("http://localhost:5000/item",{
+        const response = await fetch("/item",{
           method : "GET",
           headers : {"Content-Type" : "application/json"}
         })
@@ -52,7 +52,7 @@ const ProductContext = ({children}) => {
     },[])
     useEffect(()=>{
       const cartData = async ()=>{
-        const response = await fetch("http://localhost:5000/cart",{
+        const response = await fetch("/cart",{
           credentials: "include",
         })
         const data = await response.json()

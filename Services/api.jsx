@@ -1,6 +1,6 @@
  export const cartAdd = async (item)=>{
         
-        const response = await fetch("http://localhost:5000/cart",{
+        const response = await fetch("/cart",{
           headers : {"Content-Type" : "application/json"},
           body : JSON.stringify({item : item}),
           method : "POST",
@@ -11,7 +11,7 @@
 }
  export const orders = async (item)=>{
         
-        const response = await fetch("http://localhost:5000/orders",{
+        const response = await fetch("/orders",{
           headers : {"Content-Type" : "application/json"},
           body : JSON.stringify({item : item}),
           method : "POST",
@@ -22,7 +22,7 @@
 }
  export const DeleteCart = async ()=>{
         
-        const response = await fetch("http://localhost:5000/DeleteCart",{
+        const response = await fetch("/DeleteCart",{
           headers : {"Content-Type" : "application/json"},
           method : "POST",
           credentials : "include"

@@ -13,7 +13,7 @@ const form = () => {
 
   const Register = async (username,password,email) => {
     console.log(username,password,email)
-    const response = await fetch("http://localhost:5000/register",{
+    const response = await fetch("/register",{
       method : "POST",
       headers : {
         "Content-Type" : "application/json"
@@ -35,7 +35,7 @@ const form = () => {
  async function Login(){
   console.log(username,password);
   
-  const res = await fetch("http://localhost:5000/login",{
+  const res = await fetch("/login",{
     method : "POST",
     headers : {"Content-Type" : "application/json"},
     credentials : "include",
