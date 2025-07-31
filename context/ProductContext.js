@@ -72,6 +72,9 @@ const ProductContext = ({children}) => {
       }
       cartData() 
     },[])
+    useEffect(()=>{
+      console.log(items,"tablesssss");
+    },[items])
      useEffect(()=>{
             const addr = JSON.parse(localStorage.getItem("form"));
             setAddress(addr);

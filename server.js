@@ -130,6 +130,8 @@ app.get("/api/item", (req, res) => {
     if (err) {
       return res.status(400).json({ error: "Db error" + err });
     }
+    console.log(result);
+    
     return res.status(200).json({ data: result });
   });
 });

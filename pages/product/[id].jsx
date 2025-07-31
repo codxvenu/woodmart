@@ -9,12 +9,11 @@ import Cards from '@/components/product/cards'
 import Loading from '@/components/other/loading'
 import { useRouter } from 'next/router'
 import { Product } from '@/context/ProductContext'
-import data from '@/itemz'
 const product = () => {
   const [loading, setLoading] = React.useState(true);
   const router = useRouter();
-  const {setItems} = useContext(Product);
-  const { id } = router.query;
+  const {setItems,items,data} = useContext(Product);
+  const id = router.query.id;
   useEffect(()=>{
     setLoading(true);
     const timer = setTimeout(()=>{
@@ -27,9 +26,12 @@ const product = () => {
   const item = data.find((idx) => idx.id === Number(id));
   if (item) {
     setItems(item);
-    console.log(item, "data item", id);
+    console.log(item, "data item", id,router.query.id,router.query);
   }
-}, [id]);
+}, [id,data]);
+useEffect(()=>{
+  console.log(data.filter((idx) => idx.id === Number(id)),"datassss",data);
+},[data])
 
   return (
     <>
@@ -42,7 +44,7 @@ const product = () => {
     
         <Data/>
 
-        {/* <About_brand/> */}
+        <About_brand/>
         <Review/>
         <Cards/>
     </>

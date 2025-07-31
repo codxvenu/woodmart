@@ -1,17 +1,15 @@
 import { urbanist, workSans } from '@/pages/_app';
 import React, { useEffect, useState ,useContext } from 'react'
 import { Product } from "@/context/ProductContext";
-import data from '@/itemz';
 import Side_cart from '../shopping_cart/side_cart';
 import Link from 'next/link';
 import { cartAdd } from '@/Services/api';
 const cards = () => {
   const[change ,setChange] =useState(0);
-  const{items , wishlist,setWishlist,compare,setCompare,cart,setCart} = useContext(Product);
+  const{items , wishlist,setWishlist,compare,setCompare,cart,setCart,data} = useContext(Product);
   const[side,setSide] = useState(false);
   useEffect(()=>{
     console.log(items,"data",data[0]);
-    
   },[]);
 async function handleCart(item){
  
