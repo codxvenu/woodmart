@@ -110,7 +110,7 @@ async function handleCart(item){
               +
             </button>
           </span>
-          <button className="bg-[rgb(245,154,87)] sm:w-[inherit] rounded-[20px] text-white cursor-pointer" onClick={()=>{setSide(true); handleCart(item)}}>
+          <button className="bg-[rgb(245,154,87)] sm:w-[inherit] rounded-[20px] text-white cursor-pointer" onClick={()=>{setSide(true); handleCart(items)}}>
             Add to cart
           </button>
           <Link href="/checkout" className="lg:w-[inherit] w-full col-span-2">
