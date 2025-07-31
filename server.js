@@ -460,6 +460,8 @@ if (!fs.existsSync(folder)) {
     }
   })
 })
-app.listen(port, () => {
-  console.log("server is running " + port);
-});
+// app.listen(port, () => {
+//   console.log("server is running " + port);
+// });
+
+module.exports = app;
