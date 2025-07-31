@@ -9,7 +9,6 @@ const head = () => {
 const[coupon , setCoupon]= useState(false);
   const router = useRouter();
   console.log(cart);
-  useEffect(()=>{router.push("/")},[])
   return (
     <div className='flex flex-col items-center  '>
       <img className="w-[210px] h-[40px] lg:max-w-[210px] max-w-[179px]" src="/10007.svg" decoding="async"/>
