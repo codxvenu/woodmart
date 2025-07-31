@@ -85,7 +85,7 @@ return (
               <span className="flex flex-col justify-between md:items-start items-center text-[rgb(245,154,87)] font-bold max-[548px]:text-[13.5px] max-[768.5px]:text-[15px] lg:text-[16px] gap-[10px]">
                 <h1 className="text-[21px]">${item.price}</h1>
                 <span className="lg:hidden colors flex mt-[-10px]">
-                  {item.colors.map((color, index) => (
+                  {/* {item.colors.map((color, index) => (
                     <span
                       key={index}
                       className="md:flex hidden flex-col justify-center items-center gap-0.5 group/color w-[22px]"
@@ -101,7 +101,7 @@ return (
                         <i className="ri-arrow-down-s-fill absolute top-[-22px] text-[20px] text-black left-[-3px] group-hover/color:opacity-100 transition-opacity duration-200 opacity-0"></i>
                       </span>
                     </span>
-                  ))}
+                  ))} */}
                 </span>
                 <p className="text-[#777777] text-[15px] font-normal md:block hidden">
                   Soft curves and tapering slender lines are inspired by modern
