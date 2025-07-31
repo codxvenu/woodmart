@@ -6,6 +6,17 @@ import { Product } from '@/context/ProductContext'
 
 const billing = () => {
     const [form,setform] = useState([{
+      first : "",
+      last : "",
+      email : "",
+      phone : "",
+      street : "",
+      state : "",
+      country : "",
+      pin : "",
+      town : "",
+      company : "",
+
     }])
     const { setAddress } = useContext(Product);
     const handleChange = (e)=>{
